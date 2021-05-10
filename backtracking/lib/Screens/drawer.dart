@@ -1,6 +1,7 @@
-import 'package:backtracking/Screens/home.dart';
-import 'package:backtracking/Screens/production.dart';
 import 'package:flutter/material.dart';
+
+import '../Screens/home.dart';
+import '../Screens/production.dart';
 
 class AppDrawer extends StatelessWidget {
   @override

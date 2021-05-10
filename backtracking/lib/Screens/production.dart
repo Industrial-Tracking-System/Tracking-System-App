@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../Module/products.dart';
-import '../Module/Product_item.dart';
-import '../Module/product.dart';
+import '../Modules/products.dart';
+import '../Modules/Product_item.dart';
+import '../Modules/product.dart';
 import '../Screens/drawer.dart';
 
 class ProductionScreen extends StatelessWidget {
