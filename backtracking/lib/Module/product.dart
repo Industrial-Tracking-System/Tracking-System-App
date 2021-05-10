@@ -11,5 +11,8 @@ class Product {
   DateTime end;
   @required
   String id;
-  Product({this.name, this.quntity, this.start, this.id, this.end});
+  @required
+  String imageUrl;
+  Product(
+      {this.name, this.quntity, this.start, this.id, this.end, this.imageUrl});
 }

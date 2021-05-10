@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'Module/products.dart';
-import 'Screens/home_screen.dart';
+import 'Screens/home.dart';
+import 'Screens/production.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -25,6 +26,10 @@ class MyApp extends StatelessWidget {
               bodyText2: TextStyle(fontSize: 30)),
         ),
         home: HomeScreen(),
+        routes: {
+          HomeScreen.routeName: (context) => HomeScreen(),
+          ProdcutionScreen.routeName: (context) => ProdcutionScreen()
+        },
       ),
     );
   }
