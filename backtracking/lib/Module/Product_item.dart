@@ -39,7 +39,7 @@ class ProductItem extends StatelessWidget {
           ),
         ),
         trailing: Text(
-          "X" + quntity.toString(),
+          "x" + quntity.toString(),
           style: TextStyle(fontSize: 25, fontWeight: FontWeight.w400),
         ));
   }

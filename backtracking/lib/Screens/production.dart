@@ -1,25 +1,27 @@
-import 'package:backtracking/Module/product.dart';
-import 'package:backtracking/Screens/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import '../Module/products.dart';
 import '../Module/Product_item.dart';
+import '../Module/product.dart';
+import '../Screens/drawer.dart';
 
-class ProdcutionScreen extends StatelessWidget {
+class ProductionScreen extends StatelessWidget {
   static const routeName = "productionScreen";
   @override
   Widget build(BuildContext context) {
     final myProductsList = Provider.of<Products>(context, listen: false);
     final myProducts = myProductsList.myProducts as List<Product>;
     return Scaffold(
-        drawer: AppDrawer(),
-        backgroundColor: Colors.purple[400],
-        appBar: AppBar(
-          title: Text("Production"),
-          actions: [],
-        ),
-        body: SingleChildScrollView(
-          child: Column(
+      drawer: AppDrawer(),
+      backgroundColor: Colors.purple[400],
+      appBar: AppBar(
+        title: Text("Production"),
+        actions: [],
+      ),
+      body: LayoutBuilder(
+        builder: (ctx, constraints) {
+          return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
@@ -52,7 +54,7 @@ class ProdcutionScreen extends StatelessWidget {
               Container(
                 padding: EdgeInsets.only(top: 20, left: 20),
                 width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height,
+                height: constraints.maxHeight * 0.776,
                 child: ListView.builder(
                   itemCount: myProducts.length,
                   itemBuilder: (context, index) {
@@ -70,9 +72,11 @@ class ProdcutionScreen extends StatelessWidget {
                     color: Colors.white,
                     borderRadius:
                         BorderRadius.only(topLeft: Radius.circular(75))),
-              )
+              ),
             ],
-          ),
-        ));
+          );
+        },
+      ),
+    );
   }
 }

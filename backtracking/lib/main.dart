@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
 import 'Module/products.dart';
 import 'Screens/home.dart';
 import 'Screens/production.dart';
-import 'package:provider/provider.dart';
 
 void main() {
   runApp(MyApp());
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
         home: HomeScreen(),
         routes: {
           HomeScreen.routeName: (context) => HomeScreen(),
-          ProdcutionScreen.routeName: (context) => ProdcutionScreen()
+          ProductionScreen.routeName: (context) => ProductionScreen()
         },
       ),
     );
