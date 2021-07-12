@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-
 import '../Login/LogIn_Screen.dart';
+import '../SignUp/SignUp_Screen.dart';
 import 'components/Welcome_Background.dart';
 import 'components/Button.dart';
 
@@ -34,15 +34,17 @@ class WelcomeScreen extends StatelessWidget {
             ),
             Button(
               text: "LOGIN",
-              press: () {
-                Navigator.of(context).pushReplacementNamed(LogInScreen.routeName);
-              },
+              press: () => Navigator.of(context).pushReplacementNamed(
+                LogInScreen.routeName,
+              ),
               textColor: Colors.white,
               color: Theme.of(context).primaryColor,
             ),
             Button(
               text: "SIGNUP",
-              press: () {},
+              press: () => Navigator.of(context).pushReplacementNamed(
+                SignUpScreen.routeName,
+              ),
               textColor: Colors.black,
               color: Color(0xFFF1E6FF),
             ),

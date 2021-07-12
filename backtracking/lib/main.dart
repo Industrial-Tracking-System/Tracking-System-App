@@ -7,6 +7,7 @@ import 'Screens/home.dart';
 import 'Screens/production.dart';
 import 'Screens/Login/LogIn_Screen.dart';
 import 'Screens/Welcome/Welcome_Screen.dart';
+import 'Screens/SignUp/SignUp_Screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -38,6 +39,7 @@ class MyApp extends StatelessWidget {
           HomeScreen.routeName: (context) => HomeScreen(),
           ProductionScreen.routeName: (context) => ProductionScreen(),
           LogInScreen.routeName: (context) => LogInScreen(),
+          SignUpScreen.routeName: (context) => SignUpScreen(),
         },
       ),
     );
