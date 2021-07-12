@@ -1,3 +1,4 @@
+import 'package:backtracking/Screens/Welcome/Welcome_Screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
               bodyText1: TextStyle(fontSize: 20),
               bodyText2: TextStyle(fontSize: 30)),
         ),
-        home: HomeScreen(),
+        home: WelcomeScreen(),
         routes: {
           HomeScreen.routeName: (context) => HomeScreen(),
           ProductionScreen.routeName: (context) => ProductionScreen()
