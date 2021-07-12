@@ -2,7 +2,7 @@ import 'package:backtracking/Screens/Welcome/Welcome_Screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'Modules/products.dart';
+import 'providers/products.dart';
 import 'Screens/home.dart';
 import 'Screens/production.dart';
 
@@ -13,10 +13,14 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<Products>(
-      create: (_) {
-        return Products();
-      },
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<Products>(
+          create: (_) {
+            return Products();
+          },
+        ),
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Back Tracking',
