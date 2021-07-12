@@ -1,4 +1,3 @@
-import 'package:backtracking/Screens/Login/components/Log_in_Body.dart';
 import 'package:flutter/material.dart';
 
 class LoginBackground extends StatelessWidget {

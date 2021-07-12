@@ -1,5 +1,6 @@
-import 'package:backtracking/components/text_field_container.dart';
 import 'package:flutter/material.dart';
+
+import '../components/text_field_container.dart';
 
 class RoundedPasswordField extends StatelessWidget {
   final ValueChanged<String> onChanged;
@@ -21,10 +22,10 @@ class RoundedPasswordField extends StatelessWidget {
             Icons.lock,
             color: Color(0xFF6F35A5),
           ),
-          suffixIcon: Icon(
-            Icons.visibility,
-            color: Color(0xFF6F35A5),
-          ),
+          // suffixIcon: Icon(
+          //   Icons.visibility,
+          //   color: Color(0xFF6F35A5),
+          // ),
           border: InputBorder.none,
         ),
       ),
