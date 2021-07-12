@@ -1,3 +1,4 @@
+import 'package:backtracking/Screens/Welcome/Welcome_Screen.dart';
 import 'package:flutter/material.dart';
 
 import '../Screens/home.dart';
@@ -116,7 +117,9 @@ class AppDrawer extends StatelessWidget {
             dense: true,
             leading: Icon(Icons.exit_to_app),
             title: Text('Logout'),
-            onTap: () {},
+            onTap: () => Navigator.of(context).pushReplacementNamed(
+              WelcomeScreen.routeName,
+            ),
           ),
         ],
       ),

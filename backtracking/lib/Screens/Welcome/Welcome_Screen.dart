@@ -7,6 +7,7 @@ import 'components/Welcome_Background.dart';
 import 'components/Button.dart';
 
 class WelcomeScreen extends StatelessWidget {
+  static const routeName = "/welcome-screen";
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;

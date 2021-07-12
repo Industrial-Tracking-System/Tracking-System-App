@@ -8,6 +8,7 @@ import '../../components/rounded_password_field.dart';
 
 import 'components/Sign_Up_background.dart';
 import '../../Screens/Login/LogIn_Screen.dart';
+import '../home.dart';
 
 class SignUpScreen extends StatelessWidget {
   static const routeName = "/SignUp-Screen";
@@ -46,7 +47,9 @@ class SignUpScreen extends StatelessWidget {
               ),
               Button(
                 text: "Sign Up",
-                press: () {},
+                press: () => Navigator.of(context).pushReplacementNamed(
+                  HomeScreen.routeName,
+                ),
                 color: Color(0xFF6F35A5),
                 textColor: Colors.white,
               ),

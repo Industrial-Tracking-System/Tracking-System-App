@@ -40,6 +40,7 @@ class MyApp extends StatelessWidget {
           ProductionScreen.routeName: (context) => ProductionScreen(),
           LogInScreen.routeName: (context) => LogInScreen(),
           SignUpScreen.routeName: (context) => SignUpScreen(),
+          WelcomeScreen.routeName: (context) => WelcomeScreen(),
         },
       ),
     );
