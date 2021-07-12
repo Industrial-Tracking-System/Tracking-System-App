@@ -1,3 +1,4 @@
+import 'package:backtracking/Screens/Login/LoginScreen.dart';
 import 'package:backtracking/Screens/Welcome/components/Background.dart';
 import 'package:backtracking/Screens/Welcome/components/Button.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +31,9 @@ class Body extends StatelessWidget {
           ),
           Button(
             text: "LOGIN",
-            press: () {},
+            press: () {
+              Navigator.of(context).pushReplacementNamed(LoginScreen.routeName);
+            },
             textColor: Colors.white,
             color: Theme.of(context).primaryColor,
           ),

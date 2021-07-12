@@ -1,3 +1,4 @@
+import 'package:backtracking/Screens/Login/LoginScreen.dart';
 import 'package:backtracking/Screens/Welcome/Welcome_Screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -34,7 +35,8 @@ class MyApp extends StatelessWidget {
         home: WelcomeScreen(),
         routes: {
           HomeScreen.routeName: (context) => HomeScreen(),
-          ProductionScreen.routeName: (context) => ProductionScreen()
+          ProductionScreen.routeName: (context) => ProductionScreen(),
+          LoginScreen.routeName: (context) => LoginScreen(),
         },
       ),
     );
