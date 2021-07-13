@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../Screens/home.dart';
 import '../Screens/production.dart';
+import '../Screens/orders_Screen.dart';
 
 class AppDrawer extends StatelessWidget {
   @override
@@ -78,7 +79,7 @@ class AppDrawer extends StatelessWidget {
               title: Text('Production'),
               onTap: () {
                 Navigator.of(context)
-                    .pushReplacementNamed(ProductionScreen.routeName);
+                    .pushNamed(ProductionScreen.routeName);
               }),
           Divider(),
           ListTile(
@@ -99,7 +100,10 @@ class AppDrawer extends StatelessWidget {
               dense: true,
               leading: Icon(Icons.shopping_cart),
               title: Text('Orders'),
-              onTap: () {}),
+              onTap: () => Navigator.of(context).pushNamed(
+              OrdersScreen.routeName,
+            ),
+              ),
           Divider(),
           ListTile(
               dense: true,
