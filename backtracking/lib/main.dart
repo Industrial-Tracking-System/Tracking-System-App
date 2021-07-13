@@ -1,3 +1,6 @@
+import 'package:backtracking/Modules/order.dart';
+import 'package:backtracking/Screens/OrderDetailsScreen.dart';
+import 'package:backtracking/providers/Orders.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -24,6 +27,11 @@ class MyApp extends StatelessWidget {
             return Products();
           },
         ),
+        ChangeNotifierProvider<Orders>(
+          create: (_) {
+            return Orders();
+          },
+        )
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -43,6 +51,7 @@ class MyApp extends StatelessWidget {
           SignUpScreen.routeName: (context) => SignUpScreen(),
           WelcomeScreen.routeName: (context) => WelcomeScreen(),
           OrdersScreen.routeName: (context) => OrdersScreen(),
+          OrderDetailsScreen.routename: (context) => OrderDetailsScreen()
         },
       ),
     );
