@@ -1,3 +1,4 @@
+import 'package:backtracking/components/OrDivider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -59,6 +60,10 @@ class SignUpScreen extends StatelessWidget {
                   LogInScreen.routeName,
                 ),
               ),
+              SizedBox(
+                height: size.height * 0.01,
+              ),
+              OrDivider()
             ],
           ),
         ),
