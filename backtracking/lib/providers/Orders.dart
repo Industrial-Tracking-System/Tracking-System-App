@@ -1,6 +1,6 @@
-import 'package:backtracking/Modules/order.dart';
-import 'package:backtracking/Widgets/order_item.dart';
 import 'package:flutter/foundation.dart';
+
+import '../Modules/order.dart';
 
 class Orders with ChangeNotifier {
   List<Order> _list = [
