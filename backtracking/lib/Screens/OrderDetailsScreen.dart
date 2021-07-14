@@ -1,3 +1,5 @@
+import 'package:backtracking/providers/customers.dart';
+import 'package:backtracking/providers/inventories.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
@@ -10,10 +12,14 @@ class OrderDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     final orderId = ModalRoute.of(context).settings.arguments as String;
-    final myOrder = Provider.of<Orders>(context).findByid(orderId);
+    final myOrder = Provider.of<Orders>(context).findOrderByid(orderId);
+    final customer = Provider.of<Customers>(context);
+    final inventory = Provider.of<Inventories>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text(myOrder.companyName + " Order"),
+        title: Text(
+            customer.findCustomerById(myOrder.customer_id).company_name +
+                " Order"),
       ),
       body: Container(
         height: size.height -
@@ -51,7 +57,7 @@ class OrderDetailsScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Company Name: ${myOrder.companyName}",
+                      "Company Name: ${customer.findCustomerById(myOrder.customer_id).company_name}",
                       style: TextStyle(fontSize: 15),
                     ),
                     Text(
@@ -63,7 +69,15 @@ class OrderDetailsScreen extends StatelessWidget {
                       style: TextStyle(fontSize: 15),
                     ),
                     Text(
-                      "Order Date: ${DateFormat('yyyy-MM-dd – kk:mm').format(myOrder.orderDate)}",
+                      "Cost: ${myOrder.cost} \$",
+                      style: TextStyle(fontSize: 15),
+                    ),
+                    Text(
+                      "Inventory Name: ${inventory.findInventoryByid(myOrder.inventory_id).inventory_name}",
+                      style: TextStyle(fontSize: 15),
+                    ),
+                    Text(
+                      "Order Date: ${DateFormat('yyyy-MM-dd').format(myOrder.orderDate)}",
                       style: TextStyle(fontSize: 15),
                     ),
                     Text(

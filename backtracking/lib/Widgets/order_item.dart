@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 class OrderItem extends StatelessWidget {
   final String id;
   final String companyName;
-  final String factoryName;
+  final String inventoryName;
   final int quantity;
   String status;
 
   OrderItem({
     this.id,
     this.companyName,
-    this.factoryName,
+    this.inventoryName,
     this.status,
     this.quantity,
   });
@@ -52,64 +52,3 @@ class OrderItem extends StatelessWidget {
     );
   }
 }
-// return GestureDetector(
-    //   onTap: () {},
-    //   child: Card(
-    //     color: Colors.purple[300],
-    //     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-    //     elevation: 10,
-    //     margin: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
-    //     child: Padding(
-    //       padding: EdgeInsets.symmetric(vertical: 12, horizontal: 10),
-    //       child: Column(
-    //         children: [
-    //           Row(
-    //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    //             children: [
-    //               Text(
-    //                 "Name: $companyName",
-    //                 style: TextStyle(
-    //                   fontSize: 16,
-    //                   fontWeight: FontWeight.w600,
-    //                   color: Colors.white,
-    //                 ),
-    //               ),
-    //               Text(
-    //                 "Status: $status",
-    //                 style: TextStyle(
-    //                   fontSize: 16,
-    //                   fontWeight: FontWeight.w600,
-    //                   color: Colors.white,
-    //                 ),
-    //               ),
-    //             ],
-    //           ),
-    //           SizedBox(
-    //             height: 20,
-    //           ),
-    //           Row(
-    //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    //             children: [
-    //               Text(
-    //                 "Quantity: $quantity Pieces",
-    //                 style: TextStyle(
-    //                   fontSize: 16,
-    //                   fontWeight: FontWeight.w600,
-    //                   color: Colors.white,
-    //                 ),
-    //               ),
-    //               Text(
-    //                 "Store: $factoryName",
-    //                 style: TextStyle(
-    //                   fontSize: 16,
-    //                   fontWeight: FontWeight.w600,
-    //                   color: Colors.white,
-    //                 ),
-    //               ),
-    //             ],
-    //           ),
-    //         ],
-    //       ),
-    //     ),
-    //   ),
-    // );

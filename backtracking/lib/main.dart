@@ -1,5 +1,7 @@
 import 'package:backtracking/Screens/OrderDetailsScreen.dart';
 import 'package:backtracking/providers/Orders.dart';
+import 'package:backtracking/providers/customers.dart';
+import 'package:backtracking/providers/inventories.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -29,6 +31,16 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<Orders>(
           create: (_) {
             return Orders();
+          },
+        ),
+        ChangeNotifierProvider<Customers>(
+          create: (_) {
+            return Customers();
+          },
+        ),
+        ChangeNotifierProvider<Inventories>(
+          create: (_) {
+            return Inventories();
           },
         )
       ],

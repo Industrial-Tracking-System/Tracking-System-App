@@ -6,60 +6,58 @@ class Orders with ChangeNotifier {
   List<Order> _list = [
     Order(
         id: "1",
-        companyName: "Al-Shoruk Group",
         status: "on the road",
         quantity: 1500,
-        factoryName: "Al-Haram",
-        estimatedTime: DateTime.now(),
         orderDate: DateTime.now(),
-        factoryLattitude: "100",
-        factoryLongtiude: "200"),
+        cost: 200,
+        customer_id: "1",
+        inventory_id: "1"),
     Order(
         id: "2",
-        companyName: "Moussa Group",
-        status: "on the road",
-        quantity: 1500,
-        factoryName: "Al-Haram",
-        estimatedTime: DateTime.now(),
+        status: "Arrived",
+        quantity: 1600,
         orderDate: DateTime.now(),
-        factoryLattitude: "100",
-        factoryLongtiude: "200"),
+        cost: 300,
+        customer_id: "1",
+        inventory_id: "1"),
     Order(
         id: "3",
-        companyName: "Eliot Group",
-        status: "on the road",
-        quantity: 1500,
-        factoryName: "Al-Haram",
-        estimatedTime: DateTime.now(),
+        status: "Still",
+        quantity: 2000,
         orderDate: DateTime.now(),
-        factoryLattitude: "100",
-        factoryLongtiude: "200"),
+        cost: 400,
+        customer_id: "2",
+        inventory_id: "2"),
     Order(
         id: "4",
-        companyName: "Ta7a Group",
         status: "on the road",
         quantity: 1500,
-        factoryName: "Al-Haram",
-        estimatedTime: DateTime.now(),
         orderDate: DateTime.now(),
-        factoryLattitude: "100",
-        factoryLongtiude: "200"),
+        cost: 200,
+        customer_id: "2",
+        inventory_id: "2"),
     Order(
         id: "5",
-        companyName: "Devil Group",
         status: "on the road",
         quantity: 1500,
-        factoryName: "Al-Haram",
-        estimatedTime: DateTime.now(),
         orderDate: DateTime.now(),
-        factoryLattitude: "100",
-        factoryLongtiude: "200")
+        cost: 200,
+        customer_id: "3",
+        inventory_id: "3"),
+    Order(
+        id: "6",
+        status: "on the road",
+        quantity: 1500,
+        orderDate: DateTime.now(),
+        cost: 200,
+        customer_id: "4",
+        inventory_id: "4")
   ];
   get myOrders {
     return [..._list];
   }
 
-  Order findByid(String id) {
+  Order findOrderByid(String id) {
     return _list.firstWhere((order) => order.id == id);
   }
 }

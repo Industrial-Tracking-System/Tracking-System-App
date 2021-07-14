@@ -1,34 +1,30 @@
 import 'package:flutter/foundation.dart';
+import 'package:location/location.dart';
 
 class Order {
   @required
   final String id;
   @required
-  final String companyName;
-  @required
-  final String factoryName;
-  @required
   final int quantity;
   @required
-  final String factoryLattitude;
+  final String customer_id;
   @required
-  final String factoryLongtiude;
+  final String inventory_id;
   @required
   String status;
   @required
   final DateTime orderDate;
   @required
-  DateTime estimatedTime;
+  final int cost;
+  Location location;
 
-  Order({
-    this.id,
-    this.factoryName,
-    this.companyName,
-    this.quantity,
-    this.factoryLattitude,
-    this.factoryLongtiude,
-    this.status,
-    this.orderDate,
-    this.estimatedTime,
-  });
+  Order(
+      {this.id,
+      this.location,
+      this.quantity,
+      this.status,
+      this.orderDate,
+      this.inventory_id,
+      this.customer_id,
+      this.cost});
 }
