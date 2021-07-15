@@ -1,27 +1,25 @@
-import 'package:backtracking/Screens/OrderDetailsScreen.dart';
 import 'package:flutter/material.dart';
 
-class OrderItem extends StatelessWidget {
+class MyCard extends StatelessWidget {
   final String id;
-  final String companyName;
-  final String inventoryName;
-  final int quantity;
-  String status;
+  final String title;
+  String subtitle;
+  String routename;
+  String imageLink;
 
-  OrderItem({
+  MyCard({
     this.id,
-    this.companyName,
-    this.inventoryName,
-    this.status,
-    this.quantity,
+    this.title,
+    this.subtitle,
+    this.routename,
+    this.imageLink,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context)
-            .pushNamed(OrderDetailsScreen.routename, arguments: id);
+        Navigator.of(context).pushNamed(routename, arguments: id);
       },
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
@@ -30,17 +28,16 @@ class OrderItem extends StatelessWidget {
         child: ListTile(
           leading: ClipRRect(
             borderRadius: BorderRadius.circular(30),
-            child: Image.network(
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrxQ6QUCj7QIik6HZmgg9pAXNrLVv7Az3DfQ&usqp=CAU"),
+            child: Image.network(imageLink),
           ),
           title: Text(
-            companyName,
+            title,
             style: TextStyle(
               fontWeight: FontWeight.bold,
             ),
           ),
           subtitle: Text(
-            status,
+            subtitle,
             style: TextStyle(fontSize: 15),
           ),
           trailing: Icon(

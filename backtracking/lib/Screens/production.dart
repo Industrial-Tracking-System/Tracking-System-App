@@ -58,13 +58,22 @@ class ProductionScreen extends StatelessWidget {
                 child: ListView.builder(
                   itemCount: myProducts.length,
                   itemBuilder: (context, index) {
-                    return ProductItem(
-                      id: myProducts[index].id,
-                      start: myProducts[index].start,
-                      quntity: myProducts[index].quntity,
-                      end: myProducts[index].end,
-                      name: myProducts[index].name,
-                      iamgeUrl: myProducts[index].imageUrl,
+                    return Column(
+                      children: [
+                        ProductItem(
+                          id: myProducts[index].id,
+                          start: myProducts[index].start,
+                          quntity: myProducts[index].quntity,
+                          end: myProducts[index].end,
+                          name: myProducts[index].name,
+                          iamgeUrl: myProducts[index].imageUrl,
+                        ),
+                        Divider(
+                          height: 1,
+                          color: Colors.black12,
+                          thickness: 2,
+                        )
+                      ],
                     );
                   },
                 ),
