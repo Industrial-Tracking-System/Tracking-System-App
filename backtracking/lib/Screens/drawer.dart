@@ -2,7 +2,6 @@ import 'package:backtracking/Screens/Welcome/Welcome_Screen.dart';
 import 'package:backtracking/Screens/clientsScreen.dart';
 import 'package:flutter/material.dart';
 
-import '../Screens/home.dart';
 import '../Screens/production.dart';
 import '../Screens/orders_Screen.dart';
 
@@ -66,21 +65,11 @@ class AppDrawer extends StatelessWidget {
             height: 10,
           ),
           ListTile(
-            dense: true,
-            leading: Icon(Icons.home),
-            title: Text('Home'),
-            onTap: () {
-              Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
-            },
-          ),
-          Divider(),
-          ListTile(
               dense: true,
               leading: Icon(Icons.query_builder),
               title: Text('Production'),
               onTap: () {
-                Navigator.of(context)
-                    .pushNamed(ProductionScreen.routeName);
+                Navigator.of(context).pushNamed(ProductionScreen.routeName);
               }),
           Divider(),
           ListTile(
@@ -98,21 +87,22 @@ class AppDrawer extends StatelessWidget {
           ),
           Divider(),
           ListTile(
-              dense: true,
-              leading: Icon(Icons.shopping_cart),
-              title: Text('Orders'),
-              onTap: () => Navigator.of(context).pushNamed(
+            dense: true,
+            leading: Icon(Icons.shopping_cart),
+            title: Text('Orders'),
+            onTap: () => Navigator.of(context).pushNamed(
               OrdersScreen.routeName,
             ),
-              ),
+          ),
           Divider(),
           ListTile(
-              dense: true,
-              leading: Icon(Icons.person),
-              title: Text('Clients'),
-              onTap: ()  => Navigator.of(context).pushNamed(
+            dense: true,
+            leading: Icon(Icons.person),
+            title: Text('Clients'),
+            onTap: () => Navigator.of(context).pushNamed(
               ClientsScreen.routeName,
-            ),),
+            ),
+          ),
           Divider(),
           ListTile(
               dense: true,
