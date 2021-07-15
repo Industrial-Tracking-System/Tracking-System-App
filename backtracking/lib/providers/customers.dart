@@ -8,7 +8,7 @@ class Customers with ChangeNotifier {
       company_name: "Tie",
       customer_id: "1",
       customer_name: "Moussa",
-      email: "Moussa@yahoo.com",
+      email: "mohamedelesaily0@gmail.com",
       phone: "01157144236",
       location: new Location(),
     ),

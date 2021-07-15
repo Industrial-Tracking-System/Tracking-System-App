@@ -50,7 +50,8 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Back Tracking',
         theme: ThemeData(
-          primarySwatch: Colors.purple,
+          primaryColor:  Color(0xFF6F35A5),
+          // primarySwatch: Colors.purple,
           accentColor: Color.fromRGBO(255, 251, 102, 1),
           textTheme: TextTheme(
               bodyText1: TextStyle(fontSize: 20),
