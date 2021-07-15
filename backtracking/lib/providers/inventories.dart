@@ -6,13 +6,13 @@ import 'package:location/location.dart';
 class Inventories with ChangeNotifier {
   List<Inventory> _list = [
     Inventory(
-        inventory_id: "1", location: new Location(), inventory_name: "Eliot"),
+        inventory_id: "1", location: new Location(), inventory_name: "El-Haram"),
     Inventory(
-        inventory_id: "2", location: new Location(), inventory_name: "Moussa"),
+        inventory_id: "2", location: new Location(), inventory_name: "Shoubramant"),
     Inventory(
-        inventory_id: "3", location: new Location(), inventory_name: "devil"),
+        inventory_id: "3", location: new Location(), inventory_name: "El-Rouda"),
     Inventory(
-        inventory_id: "4", location: new Location(), inventory_name: "Taher ")
+        inventory_id: "4", location: new Location(), inventory_name: "Helwan ")
   ];
 
   get myInventores {
