@@ -14,7 +14,7 @@ class ProductionScreen extends StatelessWidget {
     final myProducts = myProductsList.myProducts as List<Product>;
     return Scaffold(
       drawer: AppDrawer(),
-      backgroundColor: Colors.purple[400],
+      backgroundColor: Theme.of(context).primaryColor,
       appBar: AppBar(
         title: Text("Production"),
         actions: [],

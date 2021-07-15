@@ -162,7 +162,7 @@ class ClientDetailsScreen extends StatelessWidget {
                         child: Button(
                           color: Colors.white,
                           press: () {},
-                          text: "CONTACT ✉",
+                          text: "CONTACT",
                           textColor: Theme.of(context).primaryColor,
                           width: size.width * 0.6,
                         ),
