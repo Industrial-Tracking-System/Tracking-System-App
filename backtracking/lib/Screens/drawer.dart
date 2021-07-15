@@ -1,5 +1,6 @@
 import 'package:backtracking/Screens/Welcome/Welcome_Screen.dart';
 import 'package:backtracking/Screens/clientsScreen.dart';
+import 'package:backtracking/Screens/storeScreen.dart';
 import 'package:flutter/material.dart';
 
 import '../Screens/production.dart';
@@ -76,7 +77,9 @@ class AppDrawer extends StatelessWidget {
             dense: true,
             leading: Icon(Icons.store),
             title: Text('Stores'),
-            onTap: () {},
+            onTap: () {
+              Navigator.of(context).pushNamed(StoreScreen.routename);
+            },
           ),
           Divider(),
           ListTile(
