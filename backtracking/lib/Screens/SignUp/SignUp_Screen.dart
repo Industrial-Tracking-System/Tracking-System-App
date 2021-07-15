@@ -52,6 +52,7 @@ class SignUpScreen extends StatelessWidget {
                 ),
                 color: Color(0xFF6F35A5),
                 textColor: Colors.white,
+                width: size.width * 0.8,
               ),
               AlreadyHaveAnAccountCheck(
                 login: false,

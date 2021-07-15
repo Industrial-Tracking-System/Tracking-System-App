@@ -40,6 +40,7 @@ class WelcomeScreen extends StatelessWidget {
               ),
               textColor: Colors.white,
               color: Theme.of(context).primaryColor,
+              width: size.width * 0.8,
             ),
             Button(
               text: "SIGNUP",
@@ -48,6 +49,7 @@ class WelcomeScreen extends StatelessWidget {
               ),
               textColor: Colors.black,
               color: Color(0xFFF1E6FF),
+              width: size.width * 0.8,
             ),
           ],
         ),

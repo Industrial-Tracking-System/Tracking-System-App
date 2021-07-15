@@ -4,6 +4,7 @@ class Button extends StatelessWidget {
   final String text;
   final Function press;
   final Color color, textColor;
+  final double width;
 
   const Button({
     Key key,
@@ -11,6 +12,7 @@ class Button extends StatelessWidget {
     this.press,
     this.color,
     this.textColor,
+    this.width,
   }) : super(key: key);
 
   @override
@@ -18,7 +20,7 @@ class Button extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
-      width: size.width * 0.8,
+      width: width,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(30),
         child: TextButton(
