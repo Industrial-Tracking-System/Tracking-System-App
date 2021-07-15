@@ -1,10 +1,12 @@
 import 'package:backtracking/Screens/OrderDetailsScreen.dart';
+import 'package:backtracking/Screens/clientsScreen.dart';
 import 'package:backtracking/providers/Orders.dart';
 import 'package:backtracking/providers/customers.dart';
 import 'package:backtracking/providers/inventories.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'Screens/ClientDetailsScreen.dart';
 import 'providers/products.dart';
 
 import 'Screens/home.dart';
@@ -62,7 +64,8 @@ class MyApp extends StatelessWidget {
           SignUpScreen.routeName: (context) => SignUpScreen(),
           WelcomeScreen.routeName: (context) => WelcomeScreen(),
           OrdersScreen.routeName: (context) => OrdersScreen(),
-          OrderDetailsScreen.routename: (context) => OrderDetailsScreen()
+          OrderDetailsScreen.routename: (context) => OrderDetailsScreen(),
+          ClientsScreen.routeName: (context)=> ClientsScreen(),
         },
       ),
     );

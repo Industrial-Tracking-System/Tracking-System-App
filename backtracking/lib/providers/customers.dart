@@ -31,8 +31,8 @@ class Customers with ChangeNotifier {
     Customer(
       company_name: "Kie",
       customer_id: "4",
-      customer_name: "Moussa",
-      email: "Moussa@yahoo.com",
+      customer_name: "Eliot",
+      email: "Eliot@yahoo.com",
       phone: "01157144236",
       location: new Location(),
     )

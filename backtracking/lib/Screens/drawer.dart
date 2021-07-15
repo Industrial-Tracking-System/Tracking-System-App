@@ -1,4 +1,5 @@
 import 'package:backtracking/Screens/Welcome/Welcome_Screen.dart';
+import 'package:backtracking/Screens/clientsScreen.dart';
 import 'package:flutter/material.dart';
 
 import '../Screens/home.dart';
@@ -109,7 +110,9 @@ class AppDrawer extends StatelessWidget {
               dense: true,
               leading: Icon(Icons.person),
               title: Text('Clients'),
-              onTap: () {}),
+              onTap: ()  => Navigator.of(context).pushNamed(
+              ClientsScreen.routeName,
+            ),),
           Divider(),
           ListTile(
               dense: true,
