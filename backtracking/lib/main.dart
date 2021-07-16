@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'Screens/ClientDetailsScreen.dart';
+import 'Screens/StoreDetailsScreen.dart';
 import 'providers/products.dart';
 
 import 'Screens/production.dart';
@@ -68,6 +69,7 @@ class MyApp extends StatelessWidget {
           ClientsScreen.routeName: (context) => ClientsScreen(),
           ClientDetailsScreen.routename: (context) => ClientDetailsScreen(),
           StoreScreen.routeName: (context) => StoreScreen(),
+          StoreDetailsScreen.routename: (context) => StoreDetailsScreen(),
         },
       ),
     );

@@ -10,7 +10,9 @@ class Inventory {
   final Location location;
   @required
   int capcity;
+  @required
+  final String supervisor_name;
 
   Inventory(
-      {this.inventory_id, this.inventory_name, this.location, this.capcity});
+      {this.inventory_id, this.inventory_name, this.location, this.capcity, this.supervisor_name,});
 }
