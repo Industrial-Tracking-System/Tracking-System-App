@@ -13,13 +13,13 @@ class OrderDetailsScreen extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     final orderId = ModalRoute.of(context).settings.arguments as String;
     final myOrder = Provider.of<Orders>(context).findOrderByid(orderId);
-    final customer = Provider.of<Customers>(context).findCustomerById(myOrder.customer_id);
-    final inventory = Provider.of<Inventories>(context).findInventoryByid(myOrder.inventory_id);
+    final customer =
+        Provider.of<Customers>(context).findCustomerById(myOrder.customer_id);
+    final inventory = Provider.of<Inventories>(context)
+        .findInventoryByid(myOrder.inventory_id);
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-            customer.company_name +
-                " Order"),
+        title: Text(customer.company_name + " Order"),
       ),
       body: Container(
         height: size.height -
@@ -31,10 +31,10 @@ class OrderDetailsScreen extends StatelessWidget {
               height: (size.height -
                       AppBar().preferredSize.height -
                       MediaQuery.of(context).padding.top) *
-                  0.3,
+                  0.4,
               width: double.infinity,
               child: Image.network(
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrxQ6QUCj7QIik6HZmgg9pAXNrLVv7Az3DfQ&usqp=CAU",
+                "https://comps.canstockphoto.com/customer-care-concept-vector-eps-vectors_csp73674631.jpg",
                 fit: BoxFit.cover,
               ),
             ),
@@ -44,63 +44,168 @@ class OrderDetailsScreen extends StatelessWidget {
                 top: (size.height -
                         AppBar().preferredSize.height -
                         MediaQuery.of(context).padding.top) *
-                    0.2,
+                    0.25,
               ),
-              child: Container(
-                width: double.infinity,
-                padding: EdgeInsets.only(
-                  left: size.width * 0.04,
-                  top: size.height * 0.05,
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Company Name: ${customer.company_name}",
-                      style: TextStyle(fontSize: 15),
-                    ),
-                    Text(
-                      "Quantity: ${myOrder.quantity}",
-                      style: TextStyle(fontSize: 15),
-                    ),
-                    Text(
-                      "Status: ${myOrder.status}",
-                      style: TextStyle(fontSize: 15),
-                    ),
-                    Text(
-                      "Cost: ${myOrder.cost} \$",
-                      style: TextStyle(fontSize: 15),
-                    ),
-                    Text(
-                      "Inventory Name: ${inventory.inventory_name}",
-                      style: TextStyle(fontSize: 15),
-                    ),
-                    Text(
-                      "Order Date: ${DateFormat('yyyy-MM-dd').format(myOrder.orderDate)}",
-                      style: TextStyle(fontSize: 15),
-                    ),
-                    Text(
-                      "Estimated Time: ${myOrder.orderDate.difference(DateTime.now()).inDays} days",
-                      style: TextStyle(fontSize: 15),
-                    ),
-                    Container(
-                      width: double.infinity,
-                      height: size.height * 0.35,
-                      child: Image.network(
-                        "https://media.wired.com/photos/59269cd37034dc5f91bec0f1/master/pass/GoogleMapTA.jpg",
+              child: Column(children: [
+                Container(
+                  padding: EdgeInsets.only(
+                      top: size.height * 0.04,
+                      left: size.height * 0.02,
+                      right: size.height * 0.02,
+                      bottom: size.height * 0.02),
+                  width: double.infinity,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Company Name :",
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 15),
+                              ),
+                              Text(customer.company_name,
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18)),
+                            ],
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Quantity:",
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 15),
+                              ),
+                              Text(myOrder.quantity.toString(),
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18)),
+                            ],
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Status:",
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 15),
+                              ),
+                              Text(myOrder.status,
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18)),
+                            ],
+                          )
+                        ],
                       ),
-                    )
-                  ],
-                ),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(75),
-                    topRight: Radius.circular(75),
+                      SizedBox(
+                        height: size.height * 0.02,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Cost:",
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 15),
+                              ),
+                              Text(myOrder.cost.toString(),
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18)),
+                            ],
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Inventory Name:",
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 15),
+                              ),
+                              Text(inventory.inventory_name,
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18)),
+                            ],
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Order Date:",
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 15),
+                              ),
+                              Text(
+                                  DateFormat('yyyy-MM-dd')
+                                      .format(myOrder.orderDate),
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18)),
+                            ],
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        height: size.height * 0.02,
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(left: size.width * 0.06),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Estimated Time:",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 15),
+                            ),
+                            Text(
+                                myOrder.orderDate
+                                    .difference(DateTime.now())
+                                    .toString(),
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18)),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).primaryColor,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(75),
+                      topRight: Radius.circular(75),
+                    ),
                   ),
                 ),
-              ),
+                Container(
+                  width: double.infinity,
+                  height: size.height * 0.39,
+                  child: Image.network(
+                    "https://media.wired.com/photos/59269cd37034dc5f91bec0f1/master/pass/GoogleMapTA.jpg",
+                    fit: BoxFit.cover,
+                  ),
+                )
+              ]),
             )
           ],
         ),

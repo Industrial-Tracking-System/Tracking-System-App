@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 class MyCard extends StatelessWidget {
   final String id;
   final String title;
-  String subtitle;
-  String routename;
-  String imageLink;
+  final String subtitle;
+  final String routename;
+  final String imageLink;
 
   MyCard({
     this.id,
