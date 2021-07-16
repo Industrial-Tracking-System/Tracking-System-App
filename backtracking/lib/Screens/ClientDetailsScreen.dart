@@ -11,12 +11,12 @@ class ClientDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     final customerId = ModalRoute.of(context).settings.arguments as String;
-    final customer = Provider.of<Customers>(context);
+    final customer = Provider.of<Customers>(context).findCustomerById(customerId);
 
     return Scaffold(
       appBar: AppBar(
         title: Text(
-            customer.findCustomerById(customerId).company_name + " Company"),
+            customer.company_name + " Company"),
       ),
       body: Container(
         height: size.height -
@@ -70,7 +70,7 @@ class ClientDetailsScreen extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            customer.findCustomerById(customerId).company_name,
+                            customer.company_name,
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
@@ -87,7 +87,7 @@ class ClientDetailsScreen extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            customer.findCustomerById(customerId).customer_name,
+                            customer.customer_name,
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
@@ -104,7 +104,7 @@ class ClientDetailsScreen extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            customer.findCustomerById(customerId).email,
+                            customer.email,
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
@@ -127,7 +127,7 @@ class ClientDetailsScreen extends StatelessWidget {
                                     ),
                                   ),
                                   Text(
-                                    customer.findCustomerById(customerId).phone,
+                                    customer.phone,
                                     style: TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold,

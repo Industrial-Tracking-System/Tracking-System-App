@@ -13,12 +13,12 @@ class OrderDetailsScreen extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     final orderId = ModalRoute.of(context).settings.arguments as String;
     final myOrder = Provider.of<Orders>(context).findOrderByid(orderId);
-    final customer = Provider.of<Customers>(context);
-    final inventory = Provider.of<Inventories>(context);
+    final customer = Provider.of<Customers>(context).findCustomerById(myOrder.customer_id);
+    final inventory = Provider.of<Inventories>(context).findInventoryByid(myOrder.inventory_id);
     return Scaffold(
       appBar: AppBar(
         title: Text(
-            customer.findCustomerById(myOrder.customer_id).company_name +
+            customer.company_name +
                 " Order"),
       ),
       body: Container(
@@ -57,7 +57,7 @@ class OrderDetailsScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Company Name: ${customer.findCustomerById(myOrder.customer_id).company_name}",
+                      "Company Name: ${customer.company_name}",
                       style: TextStyle(fontSize: 15),
                     ),
                     Text(
@@ -73,7 +73,7 @@ class OrderDetailsScreen extends StatelessWidget {
                       style: TextStyle(fontSize: 15),
                     ),
                     Text(
-                      "Inventory Name: ${inventory.findInventoryByid(myOrder.inventory_id).inventory_name}",
+                      "Inventory Name: ${inventory.inventory_name}",
                       style: TextStyle(fontSize: 15),
                     ),
                     Text(
