@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:backtracking/Screens/production.dart';
 import 'package:backtracking/api/api.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -19,20 +18,18 @@ class LogInScreen extends StatelessWidget {
   final _passwordController = TextEditingController();
 
   void _handleLogin() async {
-    // var data = {
-    //   "email": _emailController.text,
-    //   "password": _passwordController.text,
-    // };
     var data = {
-      "email": "moh1@factory",
-      "password": "123",
+      "email": _emailController.text,
+      "password": _passwordController.text,
     };
-    print("ddd");
-    print("email :" + _emailController.text);
-    print(_passwordController.text);
-    var res = await CallApi().postData(data, "login");
-    var body = json.decode(res.body);
-    print("body:   " + body);
+
+    var response = await CallApi().postData(data, "login");
+    Map<String, dynamic> map = json.decode(response.body);
+
+    print("ID:   " + map["id"].toString());
+    print("Email:   " + map["email"].toString());
+    print("phone:   " + map["phone"].toString());
+    print("job_tittle:   " + map["job_tittle"].toString());
   }
 
   @override
@@ -61,30 +58,6 @@ class LogInScreen extends StatelessWidget {
               SizedBox(
                 height: size.height * 0.02,
               ),
-              // TextField(
-              //   controller: _emailController,
-              //   cursorColor: Color(0xFF6F35A5),
-              //   decoration: InputDecoration(
-              //     // icon: Icon(
-              //     //   icon,
-              //     //   color: Color(0xFF6F35A5),
-              //     // ),
-              //     hintText: "enter email",
-              //     border: InputBorder.none,
-              //   ),
-              // ),
-              // TextField(
-              //   controller: _passwordController,
-              //   cursorColor: Color(0xFF6F35A5),
-              //   decoration: InputDecoration(
-              //     // icon: Icon(
-              //     //   icon,
-              //     //   color: Color(0xFF6F35A5),
-              //     // ),
-              //     hintText: "enter password",
-              //     border: InputBorder.none,
-              //   ),
-              // ),
               RoundedInputField(
                 hintText: "Your Email",
                 onChanged: (value) {},

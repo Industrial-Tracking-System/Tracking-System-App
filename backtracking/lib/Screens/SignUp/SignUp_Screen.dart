@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:backtracking/Screens/production.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -17,18 +16,17 @@ class SignUpScreen extends StatelessWidget {
   String email = "";
   String password = "";
 
-  void _handleLogin() async{
-  //   var data = {
-  //     "email": email,
-  //     "password": password,
-  //     "company_name": "bla",
-  //   };
-  //   var res = await CallApi().postData(data, "register");
-  //   var body = json.decode(res.body);
-  print("dd");
+  void _handleLogin() async {
+    //   var data = {
+    //     "email": email,
+    //     "password": password,
+    //     "company_name": "bla",
+    //   };p
+    //   var res = await CallApi().postData(data, "register");
+    //   var body = json.decode(res.body);
+    print("dd");
     var res = await CallApi().getData("inventories");
     print(json.decode(res.body));
-    
   }
 
   static const routeName = "/SignUp-Screen";
@@ -71,13 +69,10 @@ class SignUpScreen extends StatelessWidget {
               ),
               Button(
                 text: "Sign Up",
-                press: (){
+                press: () {
                   print(";dd");
                   _handleLogin();
                 },
-                // press: () => Navigator.of(context).pushReplacementNamed(
-                //   ProductionScreen.routeName,
-                // ),
                 color: Color(0xFF6F35A5),
                 textColor: Colors.white,
                 width: size.width * 0.8,

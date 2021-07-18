@@ -2,7 +2,7 @@ import 'package:backtracking/Screens/Welcome/components/Button.dart';
 
 import 'package:backtracking/providers/inventories.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+
 import 'package:provider/provider.dart';
 
 class StoreDetailsScreen extends StatelessWidget {
@@ -127,7 +127,7 @@ class StoreDetailsScreen extends StatelessWidget {
                           width: size.width * 0.6,
                         ),
                       ),
-                       Center(
+                      Center(
                         child: Button(
                           color: Color(0xFFF1E6FF),
                           press: () {},
