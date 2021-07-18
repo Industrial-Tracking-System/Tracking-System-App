@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:backtracking/Screens/production.dart';
+import 'package:backtracking/api/api.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -12,6 +15,26 @@ import '../SignUp/SignUp_Screen.dart';
 
 class LogInScreen extends StatelessWidget {
   static const routeName = "/Login-Screen";
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  void _handleLogin() async {
+    // var data = {
+    //   "email": _emailController.text,
+    //   "password": _passwordController.text,
+    // };
+    var data = {
+      "email": "moh1@factory",
+      "password": "123",
+    };
+    print("ddd");
+    print("email :" + _emailController.text);
+    print(_passwordController.text);
+    var res = await CallApi().postData(data, "login");
+    var body = json.decode(res.body);
+    print("body:   " + body);
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -38,18 +61,45 @@ class LogInScreen extends StatelessWidget {
               SizedBox(
                 height: size.height * 0.02,
               ),
+              // TextField(
+              //   controller: _emailController,
+              //   cursorColor: Color(0xFF6F35A5),
+              //   decoration: InputDecoration(
+              //     // icon: Icon(
+              //     //   icon,
+              //     //   color: Color(0xFF6F35A5),
+              //     // ),
+              //     hintText: "enter email",
+              //     border: InputBorder.none,
+              //   ),
+              // ),
+              // TextField(
+              //   controller: _passwordController,
+              //   cursorColor: Color(0xFF6F35A5),
+              //   decoration: InputDecoration(
+              //     // icon: Icon(
+              //     //   icon,
+              //     //   color: Color(0xFF6F35A5),
+              //     // ),
+              //     hintText: "enter password",
+              //     border: InputBorder.none,
+              //   ),
+              // ),
               RoundedInputField(
                 hintText: "Your Email",
                 onChanged: (value) {},
+                controller: _emailController,
               ),
               RoundedPasswordField(
                 onChanged: (value) {},
+                controller: _passwordController,
               ),
               Button(
                 text: "LOGIN",
-                press: () => Navigator.of(context).pushReplacementNamed(
-                  ProductionScreen.routeName,
-                ),
+                press: () {
+                  print("login");
+                  _handleLogin();
+                },
                 color: Color(0xFF6F35A5),
                 textColor: Colors.white,
                 width: size.width * 0.8,

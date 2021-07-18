@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:backtracking/Screens/production.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -9,8 +11,26 @@ import '../../components/rounded_password_field.dart';
 
 import 'components/Sign_Up_background.dart';
 import '../../Screens/Login/LogIn_Screen.dart';
+import '../../api/api.dart';
 
 class SignUpScreen extends StatelessWidget {
+  String email = "";
+  String password = "";
+
+  void _handleLogin() async{
+  //   var data = {
+  //     "email": email,
+  //     "password": password,
+  //     "company_name": "bla",
+  //   };
+  //   var res = await CallApi().postData(data, "register");
+  //   var body = json.decode(res.body);
+  print("dd");
+    var res = await CallApi().getData("inventories");
+    print(json.decode(res.body));
+    
+  }
+
   static const routeName = "/SignUp-Screen";
   @override
   Widget build(BuildContext context) {
@@ -40,16 +60,24 @@ class SignUpScreen extends StatelessWidget {
               ),
               RoundedInputField(
                 hintText: "Your Email",
-                onChanged: (value) {},
+                onChanged: (value) {
+                  email = value;
+                },
               ),
               RoundedPasswordField(
-                onChanged: (value) {},
+                onChanged: (value) {
+                  password = value;
+                },
               ),
               Button(
                 text: "Sign Up",
-                press: () => Navigator.of(context).pushReplacementNamed(
-                  ProductionScreen.routeName,
-                ),
+                press: (){
+                  print(";dd");
+                  _handleLogin();
+                },
+                // press: () => Navigator.of(context).pushReplacementNamed(
+                //   ProductionScreen.routeName,
+                // ),
                 color: Color(0xFF6F35A5),
                 textColor: Colors.white,
                 width: size.width * 0.8,
