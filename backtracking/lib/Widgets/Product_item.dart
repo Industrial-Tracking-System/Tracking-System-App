@@ -8,14 +8,11 @@ class ProductItem extends StatelessWidget {
   @required
   final DateTime start;
   @required
-  final DateTime end;
-  @required
   final String id;
   @required
   final String iamgeUrl;
 
-  ProductItem(
-      {this.name, this.quntity, this.start, this.id, this.end, this.iamgeUrl});
+  ProductItem({this.name, this.quntity, this.start, this.id, this.iamgeUrl});
 
   @override
   Widget build(BuildContext context) {
@@ -30,12 +27,20 @@ class ProductItem extends StatelessWidget {
         ),
         subtitle: Padding(
           padding: EdgeInsets.only(top: 5),
-          child: FittedBox(
-            fit: BoxFit.fill,
-            child: Text(
-              " From ${DateFormat('hh:mm a').format(start)} To ${DateFormat('hh:mm a').format(end)}",
-              style: TextStyle(fontSize: 30),
-            ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                "Created At :",
+                style: TextStyle(
+                  fontSize: 20,
+                ),
+              ),
+              Text(
+                "  ${DateFormat('hh:mm a').format(start)}",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              )
+            ],
           ),
         ),
         trailing: Text(

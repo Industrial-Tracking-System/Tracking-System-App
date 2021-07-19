@@ -17,15 +17,7 @@ class SignUpScreen extends StatelessWidget {
   String password = "";
 
   void _handleLogin() async {
-    //   var data = {
-    //     "email": email,
-    //     "password": password,
-    //     "company_name": "bla",
-    //   };p
-    //   var res = await CallApi().postData(data, "register");
-    //   var body = json.decode(res.body);
-    print("dd");
-    var res = await CallApi().getData("inventories");
+    var res = await CallApi().getData("products");
     print(json.decode(res.body));
   }
 
@@ -70,7 +62,6 @@ class SignUpScreen extends StatelessWidget {
               Button(
                 text: "Sign Up",
                 press: () {
-                  print(";dd");
                   _handleLogin();
                 },
                 color: Color(0xFF6F35A5),

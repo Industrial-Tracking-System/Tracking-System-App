@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:backtracking/Screens/production.dart';
 import 'package:backtracking/api/api.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -25,11 +26,12 @@ class LogInScreen extends StatelessWidget {
 
     var response = await CallApi().postData(data, "login");
     Map<String, dynamic> map = json.decode(response.body);
-
-    print("ID:   " + map["id"].toString());
+    print("ID:   " + map["id"].toString()); // 1
     print("Email:   " + map["email"].toString());
     print("phone:   " + map["phone"].toString());
     print("job_tittle:   " + map["job_tittle"].toString());
+    print("is_manager:   " + map["is_manager"].toString());
+    print("api_token" + map["api_token"].toString());
   }
 
   @override
@@ -70,8 +72,10 @@ class LogInScreen extends StatelessWidget {
               Button(
                 text: "LOGIN",
                 press: () {
-                  print("login");
                   _handleLogin();
+                  Navigator.of(context).pushReplacementNamed(
+                    ProductionScreen.routeName,
+                  );
                 },
                 color: Color(0xFF6F35A5),
                 textColor: Colors.white,
