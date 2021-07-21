@@ -1,5 +1,6 @@
 import 'package:backtracking/Screens/OrderDetailsScreen.dart';
 import 'package:backtracking/Screens/clientsScreen.dart';
+import 'package:backtracking/Screens/customer_home.dart';
 import 'package:backtracking/Screens/storeScreen.dart';
 import 'package:backtracking/providers/Orders.dart';
 import 'package:backtracking/providers/customers.dart';
@@ -70,6 +71,7 @@ class MyApp extends StatelessWidget {
           ClientDetailsScreen.routename: (context) => ClientDetailsScreen(),
           StoreScreen.routeName: (context) => StoreScreen(),
           StoreDetailsScreen.routename: (context) => StoreDetailsScreen(),
+          CustomerHomePage.routeName: (context) => CustomerHomePage(),
         },
       ),
     );

@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
 import '../Modules/product.dart';
-import 'package:http/http.dart' as http;
 import 'dart:convert';
 import '../api/api.dart';
 

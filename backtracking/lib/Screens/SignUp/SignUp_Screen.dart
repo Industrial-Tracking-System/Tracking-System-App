@@ -8,20 +8,44 @@ import '../../components/already_have_an_account_acheck.dart';
 import '../../components/rounded_input_field.dart';
 import '../../components/rounded_password_field.dart';
 
+import '../customer_home.dart';
 import 'components/Sign_Up_background.dart';
 import '../../Screens/Login/LogIn_Screen.dart';
 import '../../api/api.dart';
 
-class SignUpScreen extends StatelessWidget {
-  String email = "";
-  String password = "";
+class SignUpScreen extends StatefulWidget {
+  static const routeName = "/SignUp-Screen";
 
-  void _handleLogin() async {
-    var res = await CallApi().getData("products");
-    print(json.decode(res.body));
+  @override
+  _SignUpScreenState createState() => _SignUpScreenState();
+}
+
+class _SignUpScreenState extends State<SignUpScreen> {
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  bool _isVerifying = false;
+
+  void _handleSignUp() async {
+    var data = {
+      "email": _emailController.text,
+      "password": _passwordController.text,
+    };
+    setState(() {
+      _isVerifying = true;
+    });
+    await CallApi().postData(data, "signup").then((respValue) {
+      setState(() {
+        _isVerifying = false;
+      });
+      Map<String, dynamic> map = json.decode(respValue.body);
+      Navigator.of(context).pushReplacementNamed(
+        CustomerHomePage.routeName,
+      );
+    });
+    
   }
 
-  static const routeName = "/SignUp-Screen";
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -50,19 +74,15 @@ class SignUpScreen extends StatelessWidget {
               ),
               RoundedInputField(
                 hintText: "Your Email",
-                onChanged: (value) {
-                  email = value;
-                },
+                controller: _emailController,
               ),
               RoundedPasswordField(
-                onChanged: (value) {
-                  password = value;
-                },
+                controller: _passwordController,
               ),
               Button(
-                text: "Sign Up",
-                press: () {
-                  _handleLogin();
+                text: _isVerifying ? "Loading..." :"Sign Up",
+                press:_isVerifying ? null : () {
+                  _handleSignUp();
                 },
                 color: Color(0xFF6F35A5),
                 textColor: Colors.white,

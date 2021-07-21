@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:backtracking/Screens/customer_home.dart';
 import 'package:backtracking/Screens/production.dart';
 import 'package:backtracking/api/api.dart';
 import 'package:flutter/material.dart';
@@ -13,25 +14,67 @@ import '../../components/rounded_password_field.dart';
 import 'components/Log_in_background.dart';
 import '../SignUp/SignUp_Screen.dart';
 
-class LogInScreen extends StatelessWidget {
+class LogInScreen extends StatefulWidget {
   static const routeName = "/Login-Screen";
+
+  @override
+  _LogInScreenState createState() => _LogInScreenState();
+}
+
+class _LogInScreenState extends State<LogInScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+
+  int _isManager;
+
+  bool _isVerifying = false;
+
+  void directUser() {
+    if (_isManager == 1)
+      Navigator.of(context).pushReplacementNamed(
+        ProductionScreen.routeName,
+      );
+    else if (_isManager == null) {
+      showDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: Text('Wrong Data'),
+          content: Text("You have entered wrong password or email!!"),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text("try again"),
+            ),
+          ],
+        ),
+      );
+    } else {
+      Navigator.of(context).pushReplacementNamed(
+        CustomerHomePage.routeName,
+      );
+    }
+  }
 
   void _handleLogin() async {
     var data = {
       "email": _emailController.text,
       "password": _passwordController.text,
     };
-
-    var response = await CallApi().postData(data, "login");
-    Map<String, dynamic> map = json.decode(response.body);
-    print("ID:   " + map["id"].toString()); // 1
-    print("Email:   " + map["email"].toString());
-    print("phone:   " + map["phone"].toString());
-    print("job_tittle:   " + map["job_tittle"].toString());
-    print("is_manager:   " + map["is_manager"].toString());
-    print("api_token" + map["api_token"].toString());
+    setState(() {
+      _isVerifying = true;
+    });
+    await CallApi().postData(data, "login").then((respValue) {
+      setState(() {
+        _isVerifying = false;
+      });
+      Map<String, dynamic> map = json.decode(respValue.body);
+      print(respValue.body);
+      print("is_manager:   " + map["is_manager"].toString());
+      _isManager = map["is_manager"];
+      directUser();
+    });
   }
 
   @override
@@ -70,12 +113,9 @@ class LogInScreen extends StatelessWidget {
                 controller: _passwordController,
               ),
               Button(
-                text: "LOGIN",
-                press: () {
+                text: _isVerifying ? "Loading..." : "LOGIN",
+                press: _isVerifying ? null : () {
                   _handleLogin();
-                  Navigator.of(context).pushReplacementNamed(
-                    ProductionScreen.routeName,
-                  );
                 },
                 color: Color(0xFF6F35A5),
                 textColor: Colors.white,

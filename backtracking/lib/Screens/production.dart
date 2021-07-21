@@ -51,7 +51,7 @@ class _ProductionScreenState extends State<ProductionScreen> {
       body: _isLoading
           ? Center(
               child: CircularProgressIndicator(
-                color: Colors.white,
+                backgroundColor: Colors.white,
               ),
             )
           : LayoutBuilder(
