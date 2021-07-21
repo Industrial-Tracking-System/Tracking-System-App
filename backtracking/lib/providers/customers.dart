@@ -1,42 +1,33 @@
+import 'dart:convert';
+
 import 'package:backtracking/Modules/customer.dart';
+import 'package:backtracking/api/api.dart';
 import 'package:flutter/material.dart';
-import 'package:location/location.dart';
 
 class Customers with ChangeNotifier {
-  List<Customer> _list = [
-    Customer(
-      company_name: "Tie",
-      customer_id: "1",
-      customer_name: "Moussa",
-      email: "mohamedelesaily0@gmail.com",
-      phone: "01157144236",
-      location: new Location(),
-    ),
-    Customer(
-      company_name: "Bie",
-      customer_id: "2",
-      customer_name: "Moussa",
-      email: "Moussa@yahoo.com",
-      phone: "01157144236",
-      location: new Location(),
-    ),
-    Customer(
-      company_name: "Cie",
-      customer_id: "3",
-      customer_name: "Moussa",
-      email: "Moussa@yahoo.com",
-      phone: "01157144236",
-      location: new Location(),
-    ),
-    Customer(
-      company_name: "Kie",
-      customer_id: "4",
-      customer_name: "Eliot",
-      email: "Eliot@yahoo.com",
-      phone: "01157144236",
-      location: new Location(),
-    )
-  ];
+  List<Customer> _list = [];
+  Future<void> fetchandSetData() async {
+    final response = await CallApi().getData("customers");
+    final extractedData = json.decode(response.body) as List<dynamic>;
+    final List<Customer> loadedProducts = [];
+
+    for (var i = 0; i < extractedData.length; i++) {
+      loadedProducts.add(
+        Customer(
+            company_name: extractedData[i]["company_name"],
+            customer_id: extractedData[i]["id"].toString(),
+            customer_name: extractedData[i]["name"],
+            email: extractedData[i]["email"],
+            location: extractedData[i]["address"],
+            phone: extractedData[i]["phone"],
+            apitoken: extractedData[i]["api_token"]),
+      );
+    }
+
+    _list = loadedProducts;
+    notifyListeners();
+  }
+
   get myCustoemrs {
     return [..._list];
   }

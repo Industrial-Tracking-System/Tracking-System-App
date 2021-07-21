@@ -1,20 +1,19 @@
 import 'package:location/location.dart';
 
-import 'package:flutter/foundation.dart';
-
 class Customer {
-  @required
   final String customer_id;
-  @required
+
   final String customer_name;
-  @required
+
   final String company_name;
-  @required
+
   final Location location;
-  @required
+
   final String phone;
-  @required
+
   final String email;
+
+  final String apitoken;
 
   Customer(
       {this.customer_id,
@@ -22,5 +21,6 @@ class Customer {
       this.email,
       this.location,
       this.phone,
-      this.company_name});
+      this.company_name,
+      this.apitoken});
 }

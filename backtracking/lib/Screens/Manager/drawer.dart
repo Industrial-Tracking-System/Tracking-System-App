@@ -76,7 +76,7 @@ class AppDrawer extends StatelessWidget {
           ListTile(
             dense: true,
             leading: Icon(Icons.store),
-            title: Text('Stores'),
+            title: Text('Inventories'),
             onTap: () {
               Navigator.of(context).pushNamed(StoreScreen.routeName);
             },

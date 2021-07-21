@@ -88,7 +88,7 @@ class StoreDetailsScreen extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            inventory.supervisor_name,
+                            "sssss",
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,

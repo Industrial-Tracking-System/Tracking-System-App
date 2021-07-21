@@ -1,39 +1,31 @@
+import 'dart:convert';
+
 import 'package:backtracking/Modules/Inventory.dart';
+import 'package:backtracking/api/api.dart';
 import 'package:flutter/foundation.dart';
 
-import 'package:location/location.dart';
-
 class Inventories with ChangeNotifier {
-  List<Inventory> _list = [
-    Inventory(
-      inventory_id: "1",
-      location: new Location(),
-      inventory_name: "El-Haram",
-      supervisor_name: "Elliot",
-      capcity: 1000,
-    ),
-    Inventory(
-      inventory_id: "2",
-      location: new Location(),
-      inventory_name: "Shoubramant",
-      supervisor_name: "Elliot",
-      capcity: 2000,
-    ),
-    Inventory(
-      inventory_id: "3",
-      location: new Location(),
-      inventory_name: "El-Rouda",
-      supervisor_name: "Mousa",
-      capcity: 1500,
-    ),
-    Inventory(
-      inventory_id: "4",
-      location: new Location(),
-      inventory_name: "Helwan",
-      supervisor_name: "Mesm7",
-      capcity: 1600,
-    )
-  ];
+  List<Inventory> _list = [];
+  Future<void> fetchandSetData() async {
+    final response = await CallApi().getData("inventories");
+    final extractedData = json.decode(response.body) as List<dynamic>;
+    final List<Inventory> loadedProducts = [];
+
+    for (var i = 0; i < extractedData.length; i++) {
+      loadedProducts.add(
+        Inventory(
+            inventory_id: extractedData[i]["id"].toString(),
+            capcity: extractedData[i]["capaicty"],
+            empolyee_id: extractedData[i]["employee_id"].toString(),
+            factory_id: extractedData[i]["factory_id"].toString(),
+            inventory_name: extractedData[i]["location"].toString(),
+            location: extractedData[i]["addres"]),
+      );
+    }
+
+    _list = loadedProducts;
+    notifyListeners();
+  }
 
   get myInventores {
     return [..._list];
