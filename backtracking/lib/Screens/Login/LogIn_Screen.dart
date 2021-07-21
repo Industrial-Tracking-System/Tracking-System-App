@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:backtracking/Screens/Customer/customer_home.dart';
+import 'package:backtracking/Screens/Employee/employee_screen.dart';
 import 'package:backtracking/Screens/Manager/production.dart';
 import 'package:backtracking/api/api.dart';
 import 'package:flutter/material.dart';
@@ -25,16 +26,9 @@ class _LogInScreenState extends State<LogInScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
-  int _isManager;
-
   bool _isVerifying = false;
-
-  void directUser() {
-    if (_isManager == 1)
-      Navigator.of(context).pushReplacementNamed(
-        ProductionScreen.routeName,
-      );
-    else if (_isManager == null) {
+  void directCustomer(Map<String, dynamic> userData) {
+    if (userData["message"] != null) {
       showDialog(
         context: context,
         builder: (ctx) => AlertDialog(
@@ -51,13 +45,39 @@ class _LogInScreenState extends State<LogInScreen> {
         ),
       );
     } else {
+      Navigator.of(context).pushReplacementNamed(CustomerHomePage.routeName);
+    }
+  }
+
+  void directEmployee(Map<String, dynamic> userData) {
+    if (userData["message"] != null) {
+      showDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: Text('Wrong Data'),
+          content: Text("You have entered wrong password or email!!"),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text("try again"),
+            ),
+          ],
+        ),
+      );
+    } else if (userData["is_manager"] == 1)
       Navigator.of(context).pushReplacementNamed(
-        CustomerHomePage.routeName,
+        ProductionScreen.routeName,
+      );
+    else {
+      Navigator.of(context).pushReplacementNamed(
+        EmployeeHomePage.routeName,
       );
     }
   }
 
-  void _handleLogin() async {
+  void _handleLogin(String userType) async {
     var data = {
       "email": _emailController.text,
       "password": _passwordController.text,
@@ -65,21 +85,28 @@ class _LogInScreenState extends State<LogInScreen> {
     setState(() {
       _isVerifying = true;
     });
-    await CallApi().postData(data, "login").then((respValue) {
+    await CallApi()
+        .postData(data, userType == "customer" ? "customerlogin" : "login")
+        .then((respValue) {
       setState(() {
         _isVerifying = false;
       });
-      Map<String, dynamic> map = json.decode(respValue.body);
-      print(respValue.body);
-      print("is_manager:   " + map["is_manager"].toString());
-      _isManager = map["is_manager"];
-      directUser();
+      Map<String, dynamic> userData = json.decode(respValue.body);
+      //  print(respValue.body);
+      print("is_manager:   " + userData["is_manager"].toString());
+
+      userType == "customer"
+          ? directCustomer(userData)
+          : directEmployee(userData);
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    final String _userType =
+        ModalRoute.of(context).settings.arguments as String;
     Size size = MediaQuery.of(context).size;
+
     return Scaffold(
       body: LoginBackground(
         child: SingleChildScrollView(
@@ -114,9 +141,11 @@ class _LogInScreenState extends State<LogInScreen> {
               ),
               Button(
                 text: _isVerifying ? "Loading..." : "LOGIN",
-                press: _isVerifying ? null : () {
-                  _handleLogin();
-                },
+                press: _isVerifying
+                    ? null
+                    : () {
+                        _handleLogin(_userType);
+                      },
                 color: Color(0xFF6F35A5),
                 textColor: Colors.white,
                 width: size.width * 0.8,

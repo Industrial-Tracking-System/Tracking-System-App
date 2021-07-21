@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:location/location.dart';
 
 class Order {
@@ -11,8 +10,8 @@ class Order {
   final int cost;
   Location location;
 
-  Order({
-      this.id,
+  Order(
+      {this.id,
       this.location,
       this.quantity,
       this.status,

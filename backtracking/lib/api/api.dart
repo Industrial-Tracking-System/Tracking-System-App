@@ -3,12 +3,12 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class CallApi {
-  final String _url = "https://de7e1cc74c42.ngrok.io/website-api/public/api/";
+  final String _url = "https://7275076ceec4.ngrok.io/website-api/public/api/";
   Future<http.Response> postData(data, apiUrl) async {
     var fullUrl = _url + apiUrl;
     Uri myUri = Uri.parse(fullUrl);
     print("my data : " + json.encode(data));
-    
+
     return await http.post(
       myUri,
       body: json.encode(data),
@@ -24,7 +24,7 @@ class CallApi {
 
     Uri myUri = Uri.parse(fullUrl);
     print(myUri);
-    
+
     return await http.get(
       myUri,
       headers: <String, String>{
