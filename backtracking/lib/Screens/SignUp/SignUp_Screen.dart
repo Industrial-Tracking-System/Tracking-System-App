@@ -31,22 +31,22 @@ class _SignUpScreenState extends State<SignUpScreen> {
     var data = {
       "email": _emailController.text,
       "password": _passwordController.text,
-      "company_name" : _companyNameController.text,
+      "company_name": _companyNameController.text,
     };
     setState(() {
       _isVerifying = true;
     });
-    await CallApi().postData(data, "signup").then((respValue) {
+    await CallApi().postData(data, "register").then((respValue) {
       setState(() {
         _isVerifying = false;
       });
-      Map<String, dynamic> map = json.decode(respValue.body);
+      Map<String, dynamic> userData = json.decode(respValue.body);
+      print(userData["id"]);
+      print(userData["email"]);
       Navigator.of(context).pushReplacementNamed(
         CustomerHomePage.routeName,
       );
-      print(respValue.body);
     });
-    
   }
 
   @override
@@ -87,10 +87,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 controller: _passwordController,
               ),
               Button(
-                text: _isVerifying ? "Loading..." :"Sign Up",
-                press:_isVerifying ? null : () {
-                  _handleSignUp();
-                },
+                text: _isVerifying ? "Loading..." : "Sign Up",
+                press: _isVerifying
+                    ? null
+                    : () {
+                        _handleSignUp();
+                      },
                 color: Color(0xFF6F35A5),
                 textColor: Colors.white,
                 width: size.width * 0.8,
