@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:backtracking/Screens/customer_home.dart';
-import 'package:backtracking/Screens/production.dart';
+import 'package:backtracking/Screens/Customer/customer_home.dart';
+import 'package:backtracking/Screens/Manager/production.dart';
 import 'package:backtracking/api/api.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';

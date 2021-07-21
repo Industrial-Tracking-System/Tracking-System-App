@@ -1,7 +1,7 @@
 import 'package:backtracking/Screens/Welcome/Welcome_Screen.dart';
 import 'package:flutter/material.dart';
 
-import 'Welcome/components/Button.dart';
+import '../Welcome/components/Button.dart';
 
 class CustomerHomePage extends StatelessWidget {
   static const routeName = "/customer-home-screen";

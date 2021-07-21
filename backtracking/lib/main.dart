@@ -1,22 +1,22 @@
-import 'package:backtracking/Screens/OrderDetailsScreen.dart';
-import 'package:backtracking/Screens/clientsScreen.dart';
-import 'package:backtracking/Screens/customer_home.dart';
-import 'package:backtracking/Screens/storeScreen.dart';
+import 'package:backtracking/Screens/Manager/OrderDetailsScreen.dart';
+import 'package:backtracking/Screens/Manager/clientsScreen.dart';
+import 'package:backtracking/Screens/Customer/customer_home.dart';
+import 'package:backtracking/Screens/Manager/storeScreen.dart';
 import 'package:backtracking/providers/Orders.dart';
 import 'package:backtracking/providers/customers.dart';
 import 'package:backtracking/providers/inventories.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'Screens/ClientDetailsScreen.dart';
-import 'Screens/StoreDetailsScreen.dart';
+import 'Screens/Manager/ClientDetailsScreen.dart';
+import 'Screens/Manager/StoreDetailsScreen.dart';
 import 'providers/products.dart';
 
-import 'Screens/production.dart';
+import 'Screens/Manager/production.dart';
 import 'Screens/Login/LogIn_Screen.dart';
 import 'Screens/Welcome/Welcome_Screen.dart';
 import 'Screens/SignUp/SignUp_Screen.dart';
-import 'Screens/orders_Screen.dart';
+import 'Screens/Manager/orders_Screen.dart';
 
 void main() {
   runApp(MyApp());

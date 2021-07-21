@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 
-import '../providers/Orders.dart';
+import '../../providers/Orders.dart';
 
 class OrderDetailsScreen extends StatelessWidget {
   static const routename = "OrderDetailsScreen";

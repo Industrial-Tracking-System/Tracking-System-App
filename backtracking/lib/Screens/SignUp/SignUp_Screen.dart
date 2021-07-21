@@ -8,7 +8,7 @@ import '../../components/already_have_an_account_acheck.dart';
 import '../../components/rounded_input_field.dart';
 import '../../components/rounded_password_field.dart';
 
-import '../customer_home.dart';
+import '../Customer/customer_home.dart';
 import 'components/Sign_Up_background.dart';
 import '../../Screens/Login/LogIn_Screen.dart';
 import '../../api/api.dart';
@@ -23,6 +23,7 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _companyNameController = TextEditingController();
 
   bool _isVerifying = false;
 
@@ -30,6 +31,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     var data = {
       "email": _emailController.text,
       "password": _passwordController.text,
+      "company_name" : _companyNameController.text,
     };
     setState(() {
       _isVerifying = true;
@@ -42,6 +44,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       Navigator.of(context).pushReplacementNamed(
         CustomerHomePage.routeName,
       );
+      print(respValue.body);
     });
     
   }
@@ -71,6 +74,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
               SizedBox(
                 height: size.height * 0.02,
+              ),
+              RoundedInputField(
+                hintText: "Your Company Name",
+                controller: _companyNameController,
               ),
               RoundedInputField(
                 hintText: "Your Email",

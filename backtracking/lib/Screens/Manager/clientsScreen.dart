@@ -1,9 +1,9 @@
-import 'package:backtracking/Screens/ClientDetailsScreen.dart';
+import 'package:backtracking/Screens/Manager/ClientDetailsScreen.dart';
 import 'package:backtracking/providers/customers.dart';
 import 'package:flutter/material.dart';
 
-import '../Screens/drawer.dart';
-import '../components/myCard.dart';
+import 'drawer.dart';
+import '../../components/myCard.dart';
 import 'package:provider/provider.dart';
 
 

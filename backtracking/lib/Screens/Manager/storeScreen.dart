@@ -1,4 +1,4 @@
-import 'package:backtracking/Screens/drawer.dart';
+import 'package:backtracking/Screens/Manager/drawer.dart';
 
 import 'package:backtracking/components/myCard.dart';
 import 'package:backtracking/providers/inventories.dart';

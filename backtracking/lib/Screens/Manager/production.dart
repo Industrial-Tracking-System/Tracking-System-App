@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../providers/products.dart';
-import '../Widgets/Product_item.dart';
-import '../Modules/product.dart';
-import '../Screens/drawer.dart';
+import '../../providers/products.dart';
+import '../../Widgets/Product_item.dart';
+import '../../Modules/product.dart';
+import 'drawer.dart';
 
 class ProductionScreen extends StatefulWidget {
   static const routeName = "productionScreen";

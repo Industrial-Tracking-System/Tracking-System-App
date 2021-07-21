@@ -3,8 +3,8 @@ import 'package:backtracking/providers/Orders.dart';
 import 'package:backtracking/providers/customers.dart';
 import 'package:flutter/material.dart';
 
-import '../Screens/drawer.dart';
-import '../components/myCard.dart';
+import 'drawer.dart';
+import '../../components/myCard.dart';
 import 'package:provider/provider.dart';
 
 import 'OrderDetailsScreen.dart';
