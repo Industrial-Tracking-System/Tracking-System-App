@@ -15,46 +15,41 @@ class StoreScreen extends StatefulWidget {
 }
 
 class _StoreScreenState extends State<StoreScreen> {
-  // var _isLoading = false;
-
-  // var _isinit = true;
-
-  // @override
-  // void didChangeDependencies() {
-  //   if (_isinit) {
-  //     setState(() {
-  //       _isLoading = true;
-  //     });
-
-  //     Provider.of<Inventories>(context).fetchandSetData().then((_) {
-  //       setState(() {
-  //         _isLoading = false;
-  //       });
-  //     });
-  //   }
-  //   _isinit = false;
-  //   super.didChangeDependencies();
-  // }
+  Future<void> _refreshProducts(BuildContext context) async {
+    await Provider.of<Inventories>(context, listen: false).fetchandSetData();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final inventoriesProvider = Provider.of<Inventories>(context);
-
     return Scaffold(
       drawer: ManagerDrawer(),
       appBar: AppBar(
         title: Text("Inventories"),
       ),
-      body: ListView.builder(
-        itemBuilder: (context, index) => MyCard(
-          id: inventoriesProvider.myInventores[index].inventory_id,
-          title: inventoriesProvider.myInventores[index].inventory_name,
-          subtitle: "Mr " + "zxx",
-          routename: StoreDetailsScreen.routename,
-          imageLink:
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrxQ6QUCj7QIik6HZmgg9pAXNrLVv7Az3DfQ&usqp=CAU",
-        ),
-        itemCount: inventoriesProvider.myInventores.length,
+      body: FutureBuilder(
+        future: _refreshProducts(context),
+        builder: (ctx, snapshot) => snapshot.connectionState ==
+                ConnectionState.waiting
+            ? Center(
+                child: CircularProgressIndicator(),
+              )
+            : RefreshIndicator(
+                onRefresh: () => _refreshProducts(context),
+                child: Consumer<Inventories>(
+                  builder: (ctx, inventoriesProvider, _) => ListView.builder(
+                    itemBuilder: (context, index) => MyCard(
+                      id: inventoriesProvider.myInventores[index].inventory_id,
+                      title: inventoriesProvider
+                          .myInventores[index].inventory_name,
+                      subtitle: "Mr " + "zxx",
+                      routename: StoreDetailsScreen.routename,
+                      imageLink:
+                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrxQ6QUCj7QIik6HZmgg9pAXNrLVv7Az3DfQ&usqp=CAU",
+                    ),
+                    itemCount: inventoriesProvider.myInventores.length,
+                  ),
+                ),
+              ),
       ),
     );
   }

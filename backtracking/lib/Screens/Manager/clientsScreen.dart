@@ -14,47 +14,43 @@ class ClientsScreen extends StatefulWidget {
 }
 
 class _ClientsScreenState extends State<ClientsScreen> {
-  // var _isLoading = false;
-
-  // var _isinit = true;
-
-  // @override
-  // void didChangeDependencies() {
-  //   if (_isinit) {
-  //     setState(() {
-  //       _isLoading = true;
-  //     });
-
-  //     Provider.of<Customers>(context).fetchandSetData().then((_) {
-  //       setState(() {
-  //         _isLoading = false;
-  //       });
-  //     });
-  //   }
-  //   _isinit = false;
-  //   super.didChangeDependencies();
-  // }
+  Future<void> _refreshProducts(BuildContext context) async {
+    await Provider.of<Customers>(context, listen: false).fetchandSetData();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final customerProvider = Provider.of<Customers>(context);
-
     return Scaffold(
-        drawer: ManagerDrawer(),
-        appBar: AppBar(
-          title: Text("Clients"),
-        ),
-        backgroundColor: Colors.white,
-        body: ListView.builder(
-          itemBuilder: (context, index) => MyCard(
-            imageLink:
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrxQ6QUCj7QIik6HZmgg9pAXNrLVv7Az3DfQ&usqp=CAU",
-            id: customerProvider.myCustoemrs[index].customer_id,
-            routename: ClientDetailsScreen.routename,
-            title: customerProvider.myCustoemrs[index].company_name,
-            subtitle: customerProvider.myCustoemrs[index].customer_name,
-          ),
-          itemCount: customerProvider.myCustoemrs.length,
-        ));
+      drawer: ManagerDrawer(),
+      appBar: AppBar(
+        title: Text("Clients"),
+      ),
+      backgroundColor: Colors.white,
+      body: FutureBuilder(
+        future: _refreshProducts(context),
+        builder: (ctx, snapshot) => snapshot.connectionState ==
+                ConnectionState.waiting
+            ? Center(
+                child: CircularProgressIndicator(),
+              )
+            : RefreshIndicator(
+                onRefresh: () => _refreshProducts(context),
+                child: Consumer<Customers>(
+                  builder: (ctx, customerProvider, _) => ListView.builder(
+                    itemBuilder: (context, index) => MyCard(
+                      imageLink:
+                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrxQ6QUCj7QIik6HZmgg9pAXNrLVv7Az3DfQ&usqp=CAU",
+                      id: customerProvider.myCustoemrs[index].customer_id,
+                      routename: ClientDetailsScreen.routename,
+                      title: customerProvider.myCustoemrs[index].company_name,
+                      subtitle:
+                          customerProvider.myCustoemrs[index].customer_name,
+                    ),
+                    itemCount: customerProvider.myCustoemrs.length,
+                  ),
+                ),
+              ),
+      ),
+    );
   }
 }
