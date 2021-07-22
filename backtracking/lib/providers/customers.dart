@@ -10,7 +10,6 @@ class Customers with ChangeNotifier {
     final response = await CallApi().getData("customers");
     final extractedData = json.decode(response.body) as List<dynamic>;
     final List<Customer> loadedProducts = [];
-
     for (var i = 0; i < extractedData.length; i++) {
       loadedProducts.add(
         Customer(

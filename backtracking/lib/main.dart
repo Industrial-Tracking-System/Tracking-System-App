@@ -4,6 +4,7 @@ import 'package:backtracking/Screens/Manager/OrderDetailsScreen.dart';
 import 'package:backtracking/Screens/Manager/clientsScreen.dart';
 import 'package:backtracking/Screens/Customer/customer_home.dart';
 import 'package:backtracking/Screens/Manager/storeScreen.dart';
+import 'package:backtracking/Screens/Manager/viewOrders.dart';
 import 'package:backtracking/providers/Orders.dart';
 import 'package:backtracking/providers/customers.dart';
 import 'package:backtracking/providers/inventories.dart';
@@ -55,7 +56,6 @@ class MyApp extends StatelessWidget {
         title: 'Back Tracking',
         theme: ThemeData(
           primaryColor: Color(0xFF6F35A5),
-          // primarySwatch: Colors.purple,
           accentColor: Color.fromRGBO(255, 251, 102, 1),
           textTheme: TextTheme(
               bodyText1: TextStyle(fontSize: 20),
@@ -75,7 +75,8 @@ class MyApp extends StatelessWidget {
           StoreDetailsScreen.routename: (context) => StoreDetailsScreen(),
           CustomerHomePage.routeName: (context) => CustomerHomePage(),
           LoginOptions.routeName: (context) => LoginOptions(),
-          EmployeeHomePage.routeName: (context) => EmployeeHomePage()
+          EmployeeHomePage.routeName: (context) => EmployeeHomePage(),
+          ViewOrdersScreen.routeName: (context) => ViewOrdersScreen()
         },
       ),
     );

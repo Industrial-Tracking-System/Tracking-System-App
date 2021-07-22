@@ -15,26 +15,26 @@ class StoreScreen extends StatefulWidget {
 }
 
 class _StoreScreenState extends State<StoreScreen> {
-  var _isLoading = false;
+  // var _isLoading = false;
 
-  var _isinit = true;
+  // var _isinit = true;
 
-  @override
-  void didChangeDependencies() {
-    if (_isinit) {
-      setState(() {
-        _isLoading = true;
-      });
+  // @override
+  // void didChangeDependencies() {
+  //   if (_isinit) {
+  //     setState(() {
+  //       _isLoading = true;
+  //     });
 
-      Provider.of<Inventories>(context).fetchandSetData().then((_) {
-        setState(() {
-          _isLoading = false;
-        });
-      });
-    }
-    _isinit = false;
-    super.didChangeDependencies();
-  }
+  //     Provider.of<Inventories>(context).fetchandSetData().then((_) {
+  //       setState(() {
+  //         _isLoading = false;
+  //       });
+  //     });
+  //   }
+  //   _isinit = false;
+  //   super.didChangeDependencies();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -45,19 +45,17 @@ class _StoreScreenState extends State<StoreScreen> {
       appBar: AppBar(
         title: Text("Inventories"),
       ),
-      body: _isLoading
-          ? Center(child: CircularProgressIndicator())
-          : ListView.builder(
-              itemBuilder: (context, index) => MyCard(
-                id: inventoriesProvider.myInventores[index].inventory_id,
-                title: inventoriesProvider.myInventores[index].inventory_name,
-                subtitle: "Mr " + "zxx",
-                routename: StoreDetailsScreen.routename,
-                imageLink:
-                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrxQ6QUCj7QIik6HZmgg9pAXNrLVv7Az3DfQ&usqp=CAU",
-              ),
-              itemCount: inventoriesProvider.myInventores.length,
-            ),
+      body: ListView.builder(
+        itemBuilder: (context, index) => MyCard(
+          id: inventoriesProvider.myInventores[index].inventory_id,
+          title: inventoriesProvider.myInventores[index].inventory_name,
+          subtitle: "Mr " + "zxx",
+          routename: StoreDetailsScreen.routename,
+          imageLink:
+              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrxQ6QUCj7QIik6HZmgg9pAXNrLVv7Az3DfQ&usqp=CAU",
+        ),
+        itemCount: inventoriesProvider.myInventores.length,
+      ),
     );
   }
 }

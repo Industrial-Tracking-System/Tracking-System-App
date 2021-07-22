@@ -4,8 +4,13 @@ import 'package:backtracking/Screens/Customer/customer_home.dart';
 import 'package:backtracking/Screens/Employee/employee_Home_screen.dart';
 import 'package:backtracking/Screens/Manager/production.dart';
 import 'package:backtracking/api/api.dart';
+import 'package:backtracking/providers/Orders.dart';
+import 'package:backtracking/providers/customers.dart';
+import 'package:backtracking/providers/inventories.dart';
+import 'package:backtracking/providers/products.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 
 import '../Welcome/components/Button.dart';
 import '../../components/already_have_an_account_acheck.dart';
@@ -49,7 +54,7 @@ class _LogInScreenState extends State<LogInScreen> {
     }
   }
 
-  void directEmployee(Map<String, dynamic> userData) {
+  void directEmployee(Map<String, dynamic> userData) async {
     if (userData["message"] != null) {
       showDialog(
         context: context,
@@ -66,11 +71,15 @@ class _LogInScreenState extends State<LogInScreen> {
           ],
         ),
       );
-    } else if (userData["is_manager"] == 1)
+    } else if (userData["is_manager"] == 1) {
+      Provider.of<Products>(context, listen: false).fetchandSetData();
+      Provider.of<Orders>(context, listen: false).fetchandSetData();
+      await Provider.of<Customers>(context, listen: false).fetchandSetData();
+      Provider.of<Inventories>(context, listen: false).fetchandSetData();
       Navigator.of(context).pushReplacementNamed(
         ProductionScreen.routeName,
       );
-    else {
+    } else {
       Navigator.of(context).pushReplacementNamed(
         EmployeeHomePage.routeName,
       );
@@ -92,8 +101,6 @@ class _LogInScreenState extends State<LogInScreen> {
         _isVerifying = false;
       });
       Map<String, dynamic> userData = json.decode(respValue.body);
-      //  print(respValue.body);
-      print("is_manager:   " + userData["is_manager"].toString());
 
       userType == "customer"
           ? directCustomer(userData)

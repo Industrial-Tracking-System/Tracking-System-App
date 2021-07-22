@@ -1,4 +1,6 @@
+import 'package:backtracking/Screens/Manager/viewOrders.dart';
 import 'package:backtracking/Screens/Welcome/components/Button.dart';
+import 'package:backtracking/providers/Orders.dart';
 
 import 'package:backtracking/providers/customers.dart';
 import 'package:flutter/material.dart';
@@ -11,12 +13,14 @@ class ClientDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     final customerId = ModalRoute.of(context).settings.arguments as String;
-    final customer = Provider.of<Customers>(context).findCustomerById(customerId);
+    final customer =
+        Provider.of<Customers>(context).findCustomerById(customerId);
+    final customerOrders = Provider.of<Orders>(context, listen: false)
+        .findOrdersofCustomer(customerId);
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-            customer.company_name + " Company"),
+        title: Text(customer.company_name + " Company"),
       ),
       body: Container(
         height: size.height -
@@ -170,7 +174,11 @@ class ClientDetailsScreen extends StatelessWidget {
                       Center(
                         child: Button(
                           color: Color(0xFFF1E6FF),
-                          press: () {},
+                          press: () {
+                            Navigator.of(context).pushNamed(
+                                ViewOrdersScreen.routeName,
+                                arguments: customerOrders);
+                          },
                           text: "View Orders",
                           textColor: Theme.of(context).primaryColor,
                           width: size.width * 0.6,

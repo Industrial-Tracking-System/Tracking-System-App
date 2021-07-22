@@ -1,4 +1,6 @@
+import 'package:backtracking/Screens/Manager/viewOrders.dart';
 import 'package:backtracking/Screens/Welcome/components/Button.dart';
+import 'package:backtracking/providers/Orders.dart';
 
 import 'package:backtracking/providers/inventories.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +16,8 @@ class StoreDetailsScreen extends StatelessWidget {
     final inventoryId = ModalRoute.of(context).settings.arguments as String;
     final inventory =
         Provider.of<Inventories>(context).findInventoryByid(inventoryId);
+    final orders = Provider.of<Orders>(context, listen: false)
+        .findOrdersofInventories(inventoryId);
 
     return Scaffold(
       appBar: AppBar(
@@ -121,7 +125,11 @@ class StoreDetailsScreen extends StatelessWidget {
                       Center(
                         child: Button(
                           color: Colors.white,
-                          press: () {},
+                          press: () {
+                            Navigator.of(context).pushNamed(
+                                ViewOrdersScreen.routeName,
+                                arguments: orders);
+                          },
                           text: "View Orders",
                           textColor: Theme.of(context).primaryColor,
                           width: size.width * 0.6,

@@ -17,23 +17,23 @@ class OrdersScreen extends StatefulWidget {
 }
 
 class _OrdersScreenState extends State<OrdersScreen> {
-  var _isLoading = false;
-  var _isinit = true;
-  @override
-  void didChangeDependencies() {
-    if (_isinit) {
-      setState(() {
-        _isLoading = true;
-      });
-      Provider.of<Orders>(context).fetchandSetData().then((_) {
-        setState(() {
-          _isLoading = false;
-        });
-      });
-    }
-    _isinit = false;
-    super.didChangeDependencies();
-  }
+  // var _isLoading = false;
+  // var _isinit = true;
+  // @override
+  // void didChangeDependencies() {
+  //   if (_isinit) {
+  //     setState(() {
+  //       _isLoading = true;
+  //     });
+  //     Provider.of<Orders>(context).fetchandSetData().then((_) {
+  //       setState(() {
+  //         _isLoading = false;
+  //       });
+  //     });
+  //   }
+  //   _isinit = false;
+  //   super.didChangeDependencies();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -46,24 +46,18 @@ class _OrdersScreenState extends State<OrdersScreen> {
           title: Text("Orders"),
         ),
         backgroundColor: Colors.white,
-        body: _isLoading
-            ? Center(
-                child: CircularProgressIndicator(
-                  color: Theme.of(context).primaryColor,
-                ),
-              )
-            : ListView.builder(
-                itemBuilder: (context, index) => MyCard(
-                  imageLink:
-                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrxQ6QUCj7QIik6HZmgg9pAXNrLVv7Az3DfQ&usqp=CAU",
-                  id: myOrders[index].id,
-                  routename: OrderDetailsScreen.routename,
-                  title: customer
-                      .findCustomerById(myOrders[index].customer_id)
-                      .company_name,
-                  subtitle: myOrders[index].status,
-                ),
-                itemCount: myOrders.length,
-              ));
+        body: ListView.builder(
+          itemBuilder: (context, index) => MyCard(
+            imageLink:
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrxQ6QUCj7QIik6HZmgg9pAXNrLVv7Az3DfQ&usqp=CAU",
+            id: myOrders[index].id,
+            routename: OrderDetailsScreen.routename,
+            title: customer
+                .findCustomerById(myOrders[index].customer_id)
+                .company_name,
+            subtitle: myOrders[index].status,
+          ),
+          itemCount: myOrders.length,
+        ));
   }
 }

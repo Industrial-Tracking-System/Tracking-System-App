@@ -35,6 +35,14 @@ class Orders with ChangeNotifier {
     notifyListeners();
   }
 
+  List<Order> findOrdersofInventories(String inventory_id) {
+    return _list.where((order) => order.inventory_id == inventory_id).toList();
+  }
+
+  List<Order> findOrdersofCustomer(String customer_id) {
+    return _list.where((order) => order.customer_id == customer_id).toList();
+  }
+
   get myOrders {
     return [..._list];
   }
