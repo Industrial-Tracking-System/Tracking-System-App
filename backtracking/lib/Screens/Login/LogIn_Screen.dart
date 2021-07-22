@@ -4,6 +4,7 @@ import 'package:backtracking/Screens/Customer/customer_home.dart';
 import 'package:backtracking/Screens/Employee/employee_Home_screen.dart';
 import 'package:backtracking/Screens/Manager/production.dart';
 import 'package:backtracking/api/api.dart';
+import 'package:backtracking/providers/Employees.dart';
 import 'package:backtracking/providers/Orders.dart';
 import 'package:backtracking/providers/customers.dart';
 import 'package:backtracking/providers/inventories.dart';
@@ -72,6 +73,9 @@ class _LogInScreenState extends State<LogInScreen> {
         ),
       );
     } else if (userData["is_manager"] == 1) {
+      Provider.of<Employees>(context, listen: false).fetchandSetData();
+      Provider.of<Employees>(context, listen: false)
+          .setCurrentEmployeeData(userData);
       Provider.of<Products>(context, listen: false).fetchandSetData();
       Provider.of<Orders>(context, listen: false).fetchandSetData();
       await Provider.of<Customers>(context, listen: false).fetchandSetData();

@@ -16,11 +16,12 @@ class OrdersScreen extends StatefulWidget {
 }
 
 class _OrdersScreenState extends State<OrdersScreen> {
+  Future<void> _refreshProducts(BuildContext context) async {
+    await Provider.of<Orders>(context, listen: false).fetchandSetData();
+  }
+
   @override
   Widget build(BuildContext context) {
-    Future<void> _refreshProducts(BuildContext context) async {
-      await Provider.of<Orders>(context, listen: false).fetchandSetData();
-    }
     final customer = Provider.of<Customers>(context, listen: false);
 
     return Scaffold(
@@ -29,31 +30,23 @@ class _OrdersScreenState extends State<OrdersScreen> {
         title: Text("Orders"),
       ),
       backgroundColor: Colors.white,
-      body: FutureBuilder(
-        future: _refreshProducts(context),
-        builder: (ctx, snapshot) =>
-            snapshot.connectionState == ConnectionState.waiting
-                ? Center(
-                    child: CircularProgressIndicator(),
-                  )
-                : RefreshIndicator(
-                    onRefresh: () => _refreshProducts(context),
-                    child: Consumer<Orders>(
-                      builder: (ctx, orderProvider, _) => ListView.builder(
-                        itemBuilder: (context, index) => MyCard(
-                          imageLink:
-                              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrxQ6QUCj7QIik6HZmgg9pAXNrLVv7Az3DfQ&usqp=CAU",
-                          id: orderProvider.myOrders[index].id,
-                          routename: OrderDetailsScreen.routename,
-                          title: customer
-                              .findCustomerById(orderProvider.myOrders[index].customer_id)
-                              .company_name,
-                          subtitle: orderProvider.myOrders[index].status,
-                        ),
-                        itemCount: orderProvider.myOrders.length,
-                      ),
-                    ),
-                  ),
+      body: RefreshIndicator(
+        onRefresh: () => _refreshProducts(context),
+        child: Consumer<Orders>(
+          builder: (ctx, orderProvider, _) => ListView.builder(
+            itemBuilder: (context, index) => MyCard(
+              imageLink:
+                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrxQ6QUCj7QIik6HZmgg9pAXNrLVv7Az3DfQ&usqp=CAU",
+              id: orderProvider.myOrders[index].id,
+              routename: OrderDetailsScreen.routename,
+              title: customer
+                  .findCustomerById(orderProvider.myOrders[index].customer_id)
+                  .company_name,
+              subtitle: orderProvider.myOrders[index].status,
+            ),
+            itemCount: orderProvider.myOrders.length,
+          ),
+        ),
       ),
     );
   }

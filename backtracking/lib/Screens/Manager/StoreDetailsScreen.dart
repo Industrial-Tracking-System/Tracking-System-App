@@ -1,9 +1,12 @@
+import 'package:backtracking/Modules/employee.dart';
 import 'package:backtracking/Screens/Manager/viewOrders.dart';
 import 'package:backtracking/Screens/Welcome/components/Button.dart';
+import 'package:backtracking/providers/Employees.dart';
 import 'package:backtracking/providers/Orders.dart';
 
 import 'package:backtracking/providers/inventories.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'package:provider/provider.dart';
 
@@ -18,6 +21,8 @@ class StoreDetailsScreen extends StatelessWidget {
         Provider.of<Inventories>(context).findInventoryByid(inventoryId);
     final orders = Provider.of<Orders>(context, listen: false)
         .findOrdersofInventories(inventoryId);
+    Employee employee = Provider.of<Employees>(context, listen: false)
+        .findEmployeeByid(inventory.empolyee_id);
 
     return Scaffold(
       appBar: AppBar(
@@ -92,7 +97,7 @@ class StoreDetailsScreen extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            "sssss",
+                            employee.name,
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
@@ -130,7 +135,7 @@ class StoreDetailsScreen extends StatelessWidget {
                                 ViewOrdersScreen.routeName,
                                 arguments: orders);
                           },
-                          text: "View Orders",
+                          text: "VIWE ORDERS",
                           textColor: Theme.of(context).primaryColor,
                           width: size.width * 0.6,
                         ),
@@ -138,8 +143,10 @@ class StoreDetailsScreen extends StatelessWidget {
                       Center(
                         child: Button(
                           color: Color(0xFFF1E6FF),
-                          press: () {},
-                          text: "Contact SuperVisor",
+                          press: () {
+                            launch("tel://<${employee.phone}>");
+                          },
+                          text: "CONTACT",
                           textColor: Theme.of(context).primaryColor,
                           width: size.width * 0.6,
                         ),

@@ -1,7 +1,10 @@
+import 'package:backtracking/Modules/employee.dart';
 import 'package:backtracking/Screens/Welcome/Welcome_Screen.dart';
 import 'package:backtracking/Screens/Manager/clientsScreen.dart';
 import 'package:backtracking/Screens/Manager/storeScreen.dart';
+import 'package:backtracking/providers/Employees.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'production.dart';
 import 'orders_Screen.dart';
@@ -9,6 +12,8 @@ import 'orders_Screen.dart';
 class ManagerDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    Employee employeeData =
+        Provider.of<Employees>(context, listen: false).getCurrentEmployeeData;
     return Drawer(
       child: Column(
         children: [
@@ -42,17 +47,20 @@ class ManagerDrawer extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 12),
                   child: Text(
-                    "Mohamed Ashraf",
+                    employeeData.name,
                     style: TextStyle(
                       fontSize: 20,
                       color: Colors.white,
                     ),
                   ),
                 ),
+                SizedBox(
+                  height: 5,
+                ),
                 Padding(
                   padding: const EdgeInsets.only(bottom: 12),
                   child: Text(
-                    "mohamedelesaily0@gmail.com",
+                    employeeData.email,
                     style: TextStyle(
                       fontSize: 15,
                       color: Colors.grey[350],
@@ -67,60 +75,78 @@ class ManagerDrawer extends StatelessWidget {
           ),
           ListTile(
               dense: true,
-              leading: Icon(Icons.query_builder),
-              title: Text('Production'),
+              leading: Icon(
+                Icons.query_builder,
+                size: 30,
+              ),
+              title: Text(
+                'Production',
+                style: TextStyle(fontSize: 15),
+              ),
               onTap: () {
                 Navigator.of(context).pushNamed(ProductionScreen.routeName);
               }),
           Divider(),
+          SizedBox(
+            height: 5,
+          ),
           ListTile(
             dense: true,
-            leading: Icon(Icons.store),
-            title: Text('Inventories'),
+            leading: Icon(
+              Icons.store,
+              size: 30,
+            ),
+            title: Text('Inventories', style: TextStyle(fontSize: 15)),
             onTap: () {
               Navigator.of(context).pushNamed(StoreScreen.routeName);
             },
           ),
           Divider(),
-          ListTile(
-            dense: true,
-            leading: Icon(Icons.chat),
-            title: Text('Chat'),
-            onTap: () {},
+          SizedBox(
+            height: 5,
           ),
-          Divider(),
           ListTile(
             dense: true,
-            leading: Icon(Icons.shopping_cart),
-            title: Text('Orders'),
+            leading: Icon(
+              Icons.shopping_cart,
+              size: 30,
+            ),
+            title: Text('Orders', style: TextStyle(fontSize: 15)),
             onTap: () => Navigator.of(context).pushNamed(
               OrdersScreen.routeName,
             ),
           ),
           Divider(),
+          SizedBox(
+            height: 5,
+          ),
           ListTile(
             dense: true,
-            leading: Icon(Icons.person),
-            title: Text('Clients'),
+            leading: Icon(
+              Icons.person,
+              size: 30,
+            ),
+            title: Text('Clients', style: TextStyle(fontSize: 15)),
             onTap: () => Navigator.of(context).pushNamed(
               ClientsScreen.routeName,
             ),
           ),
           Divider(),
-          ListTile(
-              dense: true,
-              leading: Icon(Icons.analytics),
-              title: Text('Analysis'),
-              onTap: () {}),
-          Divider(),
+          SizedBox(
+            height: 5,
+          ),
           ListTile(
             dense: true,
-            leading: Icon(Icons.exit_to_app),
-            title: Text('Logout'),
+            leading: Icon(
+              Icons.exit_to_app,
+              size: 30,
+            ),
+            title: Text('Logout', style: TextStyle(fontSize: 15)),
             onTap: () => Navigator.of(context).pushReplacementNamed(
               WelcomeScreen.routeName,
             ),
           ),
+          Divider(),
         ],
       ),
     );

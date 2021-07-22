@@ -5,6 +5,7 @@ import 'package:backtracking/Screens/Manager/clientsScreen.dart';
 import 'package:backtracking/Screens/Customer/customer_home.dart';
 import 'package:backtracking/Screens/Manager/storeScreen.dart';
 import 'package:backtracking/Screens/Manager/viewOrders.dart';
+import 'package:backtracking/providers/Employees.dart';
 import 'package:backtracking/providers/Orders.dart';
 import 'package:backtracking/providers/customers.dart';
 import 'package:backtracking/providers/inventories.dart';
@@ -48,6 +49,11 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<Inventories>(
           create: (_) {
             return Inventories();
+          },
+        ),
+        ChangeNotifierProvider<Employees>(
+          create: (_) {
+            return Employees();
           },
         )
       ],

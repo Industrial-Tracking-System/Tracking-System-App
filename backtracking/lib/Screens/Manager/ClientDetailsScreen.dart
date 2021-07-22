@@ -5,6 +5,7 @@ import 'package:backtracking/providers/Orders.dart';
 import 'package:backtracking/providers/customers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:provider/provider.dart';
 
 class ClientDetailsScreen extends StatelessWidget {
@@ -141,20 +142,6 @@ class ClientDetailsScreen extends StatelessWidget {
                                 ],
                               ),
                               SizedBox(width: 10),
-                              GestureDetector(
-                                onTap: () {},
-                                child: Container(
-                                  padding: EdgeInsets.all(3),
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(30)),
-                                  child: Icon(
-                                    Icons.phone,
-                                    color: Colors.green,
-                                    size: 20,
-                                  ),
-                                ),
-                              ),
                             ],
                           )
                         ],
@@ -165,7 +152,9 @@ class ClientDetailsScreen extends StatelessWidget {
                       Center(
                         child: Button(
                           color: Colors.white,
-                          press: () {},
+                          press: () {
+                            launch("tel://<${customer.phone}>");
+                          },
                           text: "CONTACT",
                           textColor: Theme.of(context).primaryColor,
                           width: size.width * 0.6,

@@ -26,30 +26,21 @@ class _ClientsScreenState extends State<ClientsScreen> {
         title: Text("Clients"),
       ),
       backgroundColor: Colors.white,
-      body: FutureBuilder(
-        future: _refreshProducts(context),
-        builder: (ctx, snapshot) => snapshot.connectionState ==
-                ConnectionState.waiting
-            ? Center(
-                child: CircularProgressIndicator(),
-              )
-            : RefreshIndicator(
-                onRefresh: () => _refreshProducts(context),
-                child: Consumer<Customers>(
-                  builder: (ctx, customerProvider, _) => ListView.builder(
-                    itemBuilder: (context, index) => MyCard(
-                      imageLink:
-                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrxQ6QUCj7QIik6HZmgg9pAXNrLVv7Az3DfQ&usqp=CAU",
-                      id: customerProvider.myCustoemrs[index].customer_id,
-                      routename: ClientDetailsScreen.routename,
-                      title: customerProvider.myCustoemrs[index].company_name,
-                      subtitle:
-                          customerProvider.myCustoemrs[index].customer_name,
-                    ),
-                    itemCount: customerProvider.myCustoemrs.length,
-                  ),
-                ),
-              ),
+      body: RefreshIndicator(
+        onRefresh: () => _refreshProducts(context),
+        child: Consumer<Customers>(
+          builder: (ctx, customerProvider, _) => ListView.builder(
+            itemBuilder: (context, index) => MyCard(
+              imageLink:
+                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrxQ6QUCj7QIik6HZmgg9pAXNrLVv7Az3DfQ&usqp=CAU",
+              id: customerProvider.myCustoemrs[index].customer_id,
+              routename: ClientDetailsScreen.routename,
+              title: customerProvider.myCustoemrs[index].company_name,
+              subtitle: customerProvider.myCustoemrs[index].customer_name,
+            ),
+            itemCount: customerProvider.myCustoemrs.length,
+          ),
+        ),
       ),
     );
   }
