@@ -2,6 +2,7 @@ import 'package:backtracking/Screens/Welcome/Welcome_Screen.dart';
 import 'package:flutter/material.dart';
 
 import '../Welcome/components/Button.dart';
+import 'customer_drawer.dart';
 
 class CustomerHomePage extends StatelessWidget {
   static const routeName = "/customer-home-screen";
@@ -9,6 +10,10 @@ class CustomerHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Welcome"),
+      ),
+      drawer: CustomerDrawer(),
       body: Column(
         children: [
           Center(

@@ -1,4 +1,4 @@
-import 'package:backtracking/Screens/Manager/drawer.dart';
+import 'package:backtracking/Screens/Manager/manager_drawer.dart';
 
 import 'package:backtracking/components/myCard.dart';
 import 'package:backtracking/providers/inventories.dart';
@@ -41,7 +41,7 @@ class _StoreScreenState extends State<StoreScreen> {
     final inventoriesProvider = Provider.of<Inventories>(context);
 
     return Scaffold(
-      drawer: AppDrawer(),
+      drawer: ManagerDrawer(),
       appBar: AppBar(
         title: Text("Inventories"),
       ),

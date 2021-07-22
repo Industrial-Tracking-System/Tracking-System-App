@@ -3,7 +3,7 @@ import 'package:backtracking/providers/Orders.dart';
 import 'package:backtracking/providers/customers.dart';
 import 'package:flutter/material.dart';
 
-import 'drawer.dart';
+import 'manager_drawer.dart';
 import '../../components/myCard.dart';
 import 'package:provider/provider.dart';
 
@@ -41,7 +41,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
     final customer = Provider.of<Customers>(context);
 
     return Scaffold(
-        drawer: AppDrawer(),
+        drawer: ManagerDrawer(),
         appBar: AppBar(
           title: Text("Orders"),
         ),

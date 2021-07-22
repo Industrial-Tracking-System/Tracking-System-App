@@ -2,7 +2,7 @@ import 'package:backtracking/Screens/Manager/ClientDetailsScreen.dart';
 import 'package:backtracking/providers/customers.dart';
 import 'package:flutter/material.dart';
 
-import 'drawer.dart';
+import 'manager_drawer.dart';
 import '../../components/myCard.dart';
 import 'package:provider/provider.dart';
 
@@ -40,7 +40,7 @@ class _ClientsScreenState extends State<ClientsScreen> {
     final customerProvider = Provider.of<Customers>(context);
 
     return Scaffold(
-        drawer: AppDrawer(),
+        drawer: ManagerDrawer(),
         appBar: AppBar(
           title: Text("Clients"),
         ),

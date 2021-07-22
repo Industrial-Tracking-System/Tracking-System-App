@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import '../../providers/products.dart';
 import '../../Widgets/Product_item.dart';
 import '../../Modules/product.dart';
-import 'drawer.dart';
+import 'manager_drawer.dart';
 
 class ProductionScreen extends StatefulWidget {
   static const routeName = "productionScreen";
@@ -42,7 +42,7 @@ class _ProductionScreenState extends State<ProductionScreen> {
     final myProductsList = Provider.of<Products>(context);
     final myProducts = myProductsList.myProducts as List<Product>;
     return Scaffold(
-      drawer: AppDrawer(),
+      drawer: ManagerDrawer(),
       backgroundColor: Theme.of(context).primaryColor,
       appBar: AppBar(
         title: Text("Production"),

@@ -1,12 +1,7 @@
 import 'package:backtracking/Screens/Welcome/Welcome_Screen.dart';
-import 'package:backtracking/Screens/Manager/clientsScreen.dart';
-import 'package:backtracking/Screens/Manager/storeScreen.dart';
 import 'package:flutter/material.dart';
 
-import 'production.dart';
-import 'orders_Screen.dart';
-
-class AppDrawer extends StatelessWidget {
+class CustomerDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -66,52 +61,13 @@ class AppDrawer extends StatelessWidget {
             height: 10,
           ),
           ListTile(
-              dense: true,
-              leading: Icon(Icons.query_builder),
-              title: Text('Production'),
-              onTap: () {
-                Navigator.of(context).pushNamed(ProductionScreen.routeName);
-              }),
-          Divider(),
-          ListTile(
-            dense: true,
-            leading: Icon(Icons.store),
-            title: Text('Inventories'),
-            onTap: () {
-              Navigator.of(context).pushNamed(StoreScreen.routeName);
-            },
-          ),
-          Divider(),
-          ListTile(
-            dense: true,
-            leading: Icon(Icons.chat),
-            title: Text('Chat'),
-            onTap: () {},
-          ),
-          Divider(),
-          ListTile(
             dense: true,
             leading: Icon(Icons.shopping_cart),
             title: Text('Orders'),
-            onTap: () => Navigator.of(context).pushNamed(
-              OrdersScreen.routeName,
-            ),
+            // onTap: () => Navigator.of(context).pushNamed(
+            // OrdersScreen.routeName,
+            // ),
           ),
-          Divider(),
-          ListTile(
-            dense: true,
-            leading: Icon(Icons.person),
-            title: Text('Clients'),
-            onTap: () => Navigator.of(context).pushNamed(
-              ClientsScreen.routeName,
-            ),
-          ),
-          Divider(),
-          ListTile(
-              dense: true,
-              leading: Icon(Icons.analytics),
-              title: Text('Analysis'),
-              onTap: () {}),
           Divider(),
           ListTile(
             dense: true,
