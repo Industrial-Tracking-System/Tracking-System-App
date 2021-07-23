@@ -1,6 +1,9 @@
 import 'dart:convert';
 
+import 'package:backtracking/providers/customers.dart';
 import 'package:flutter/foundation.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter/material.dart';
 
 import '../Modules/order.dart';
 import '../api/api.dart';
@@ -8,6 +11,8 @@ import '../api/api.dart';
 import '../providers/cart.dart';
 
 class Orders with ChangeNotifier {
+
+
   List<Order> _list = [];
 
   Future<void> fetchandSetData() async {
@@ -37,6 +42,24 @@ class Orders with ChangeNotifier {
     notifyListeners();
   }
 
+  // Future<void> sendOrderTodatabase(List<CartItem> cartProducts) async {
+  //   List<String> productsIds;
+  //   List<int> productsQuantities;
+
+  //   for (int i = 0; i < cartProducts.length; i++) {
+  //     productsIds.add(cartProducts[i].id);
+  //     productsQuantities.add(cartProducts[i].quantity);
+  //   }
+
+  //   Map<String, dynamic> myOrder = {
+  //     "customer_id": "1",
+  //     "numOfProducs": cartProducts.length,
+  //     "productsIds": productsIds,
+  //     "quantites": productsQuantities,
+  //   };
+  //   await CallApi().postData(myOrder, "make_order");
+  // }
+
   List<Order> findOrdersofInventories(String inventory_id) {
     return _list.where((order) => order.inventory_id == inventory_id).toList();
   }
@@ -52,38 +75,4 @@ class Orders with ChangeNotifier {
   Order findOrderByid(String id) {
     return _list.firstWhere((order) => order.id == id);
   }
-
-  Future<void> addOrder(List<CartItem> cartProducts, double total){
-
-  }
-
-  // Future<void> addOrder(List<CartItem> cartProducts, double total) async {
-  //   // final date = DateTime.now();
-  //   // final response = await CallApi().postData(
-  //   //   json.encode(
-  //   //     {
-  //   //       'amount': total,
-  //   //       'dateTime': date.toIso8601String(),
-  //   //       'products': cartProducts
-  //   //           .map((ci) => {
-  //   //                 "id": ci.id,
-  //   //                 "title": ci.title,
-  //   //                 "quantity": ci.quantity,
-  //   //                 "price": ci.price,
-  //   //               })
-  //   //           .toList(),
-  //   //     },
-  //   //   ),
-  //   //   "orders",
-  //   // );
-  //   // _list.insert(
-  //   //     0,
-  //   //     Order(
-  //   //       id: json.decode(response.body)['name'],
-  //   //       amount: total,
-  //   //       products: cartProducts,
-  //   //       dateTime: date,
-  //   //     ));
-  //   // notifyListeners();
-  // }
 }

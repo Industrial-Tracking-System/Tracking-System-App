@@ -1,9 +1,13 @@
 import 'package:location/location.dart';
 
 class Order {
-  final String id;
-  final int quantity;
+  
   final String customer_id;
+
+
+
+final String id;
+  final int quantity;
   final String inventory_id;
   final String employee_id;
   String status;

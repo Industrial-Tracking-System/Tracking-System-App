@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import "../../providers/cart.dart" show Cart;
+import '../../providers/customers.dart' show Customers;
 import '../../widgets/cart_item.dart';
-import '../../providers/orders.dart';
 
 class CartScreen extends StatelessWidget {
   static const routeName = '/cart';
@@ -11,6 +11,8 @@ class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cart = Provider.of<Cart>(context);
+    final customer = Provider.of<Customers>(context);
+    //final orders = Provider.of<Orders>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         title: Text("Your Cart"),
@@ -42,7 +44,10 @@ class CartScreen extends StatelessWidget {
                     ),
                     backgroundColor: Theme.of(context).primaryColor,
                   ),
-                  OrderButton(cart: cart)
+                  OrderButton(
+                    cart: cart,
+                    customers: customer,
+                  ),
                 ],
               ),
             ),
@@ -71,9 +76,11 @@ class OrderButton extends StatefulWidget {
   const OrderButton({
     Key key,
     @required this.cart,
+    this.customers,
   }) : super(key: key);
 
   final Cart cart;
+  final Customers customers;
 
   @override
   _OrderButtonState createState() => _OrderButtonState();
@@ -96,8 +103,11 @@ class _OrderButtonState extends State<OrderButton> {
               setState(() {
                 _isLoading = true;
               });
-              // await Provider.of<Orders>(context, listen: false).addOrder(
-              //     widget.cart.items.values.toList(), widget.cart.totalAmount);
+              //widget.orders.sendOrderTodatabase(widget.cart.items.values);
+              widget.cart.sendOrderTodatabase(
+                widget.cart.items.values.toList(),
+                widget.customers.getCurrentCustomer().customer_id,
+              );
               widget.cart.clear();
               setState(() {
                 _isLoading = false;

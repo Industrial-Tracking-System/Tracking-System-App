@@ -38,6 +38,11 @@ class MyApp extends StatelessWidget {
             return Products();
           },
         ),
+        ChangeNotifierProvider<Cart>(
+          create: (_) {
+            return Cart();
+          },
+        ),
         ChangeNotifierProvider<Orders>(
           create: (_) {
             return Orders();
@@ -58,11 +63,6 @@ class MyApp extends StatelessWidget {
             return Employees();
           },
         ),
-        ChangeNotifierProvider<Cart>(
-          create: (_) {
-            return Cart();
-          },
-        )
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

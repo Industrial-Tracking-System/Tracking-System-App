@@ -48,26 +48,16 @@ class ProductGridItem extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(10),
       child: GridTile(
-        child: GestureDetector(
-          onTap: () {},
-          child: FadeInImage(
-            placeholder: AssetImage('assets/images/product-placeholder.png'),
-            image: NetworkImage(currentProduct.imageUrl),
-            fit: BoxFit.cover,
-          ),
+        child: FadeInImage(
+          placeholder: AssetImage('assets/images/product-placeholder.png'),
+          image: NetworkImage(currentProduct.imageUrl),
+          fit: BoxFit.cover,
         ),
         footer: GridTileBar(
-          leading: IconButton(
-            icon: Icon(
-              Icons.favorite_border,
-            ),
-            onPressed: () {},
-            color: Theme.of(context).accentColor,
-          ),
           backgroundColor: Colors.black87,
           title: Text(
             currentProduct.name,
-            textAlign: TextAlign.center,
+            textAlign: TextAlign.left,
           ),
           trailing: IconButton(
             icon: Icon(Icons.shopping_cart),

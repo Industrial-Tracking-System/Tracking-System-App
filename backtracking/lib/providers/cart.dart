@@ -1,3 +1,4 @@
+import 'package:backtracking/api/api.dart';
 import 'package:flutter/foundation.dart';
 
 class CartItem {
@@ -49,7 +50,7 @@ class Cart with ChangeNotifier {
       _items.putIfAbsent(
           productId,
           () => CartItem(
-              id: DateTime.now().toString(),
+              id: productId,
               title: title,
               price: price,
               quantity: quantity));
@@ -84,5 +85,23 @@ class Cart with ChangeNotifier {
   void clear() {
     _items = {};
     notifyListeners();
+  }
+
+  Future<void> sendOrderTodatabase(List<CartItem> cartProducts, String customerId) async {
+    List<String> productsIds = [];
+    List<int> productsQuantities = [];
+
+    for (int i = 0; i < cartProducts.length; i++) {
+      productsIds.add(cartProducts[i].id);
+      productsQuantities.add(cartProducts[i].quantity);
+    }
+
+    Map<String, dynamic> myOrder = {
+      "customer_id": customerId,
+      "numOfProducs": cartProducts.length,
+      "productsIds": productsIds,
+      "quantites": productsQuantities,
+    };
+    await CallApi().postData(myOrder, "make_order").then((value) => print(value.body));
   }
 }
