@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:backtracking/Modules/customer.dart';
 import 'package:backtracking/Screens/Customer/customer_home.dart';
 import 'package:backtracking/Screens/Employee/employee_Home_screen.dart';
 import 'package:backtracking/Screens/Manager/production.dart';
@@ -33,7 +34,7 @@ class _LogInScreenState extends State<LogInScreen> {
   final _passwordController = TextEditingController();
 
   bool _isVerifying = false;
-  void directCustomer(Map<String, dynamic> userData) {
+  void directCustomer(Map<String, dynamic> userData) async{
     if (userData["message"] != null) {
       showDialog(
         context: context,
@@ -51,6 +52,8 @@ class _LogInScreenState extends State<LogInScreen> {
         ),
       );
     } else {
+      Provider.of<Customers>(context, listen: false).setCurrentCustomer(userData);
+      await Provider.of<Products>(context, listen: false).fetchandSetData();
       Navigator.of(context).pushReplacementNamed(CustomerHomePage.routeName);
     }
   }
