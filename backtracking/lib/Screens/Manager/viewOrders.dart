@@ -13,6 +13,7 @@ class ViewOrdersScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<Order> data = ModalRoute.of(context).settings.arguments;
     final customer = Provider.of<Customers>(context, listen: false);
+
     return Scaffold(
         appBar: AppBar(
           title: Text("Orders"),
@@ -24,8 +25,11 @@ class ViewOrdersScreen extends StatelessWidget {
                 "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrxQ6QUCj7QIik6HZmgg9pAXNrLVv7Az3DfQ&usqp=CAU",
             id: data[index].id,
             routename: OrderDetailsScreen.routename,
-            title:
-                customer.findCustomerById(data[index].customer_id).company_name,
+            title: customer.getCurrentCustomer() == null
+                ? customer
+                    .findCustomerById(data[index].customer_id)
+                    .company_name
+                : customer.getCurrentCustomer().company_name,
             subtitle: data[index].status,
           ),
           itemCount: data.length,

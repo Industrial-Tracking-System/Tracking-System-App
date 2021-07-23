@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:backtracking/Modules/customer.dart';
+import 'package:backtracking/Modules/order.dart';
 import 'package:backtracking/api/api.dart';
 import 'package:flutter/material.dart';
 import 'package:location/location.dart';
@@ -52,4 +53,38 @@ class Customers with ChangeNotifier {
   Customer findCustomerById(String id) {
     return _list.firstWhere((customer) => customer.customer_id == id);
   }
+
+  List<Order> _myOrders = [];
+
+  Future<void> fetchandSetOrders() async {
+    final response = await CallApi().getData("${_currentCustomer.customer_id}/orders");
+    final extractedData = json.decode(response.body) as List<dynamic>;
+    final List<Order> loadedProducts = [];
+
+    for (var i = 0; i < extractedData.length; i++) {
+      loadedProducts.add(
+        Order(
+          id: extractedData[i]["id"].toString(),
+          orderDate: DateTime.parse(extractedData[i]['date']).add(
+            Duration(hours: 2),
+          ),
+          cost: extractedData[i]['total_cost'],
+          status: extractedData[i]['stauts'],
+          customer_id: extractedData[i]['customer_id'].toString(),
+          inventory_id: extractedData[i]['inventory_id'].toString(),
+          employee_id: extractedData[i]['employee_id'].toString(),
+          car_id: extractedData[i]['car_id'].toString(),
+          quantity: 20,
+        ),
+      );
+    }
+
+   _myOrders = loadedProducts;
+    notifyListeners();
+  }
+
+  get myOrders{
+    return [..._myOrders];
+  }
+
 }

@@ -1,4 +1,5 @@
 import 'package:backtracking/Modules/customer.dart';
+import 'package:backtracking/Screens/Manager/viewOrders.dart';
 import 'package:backtracking/Screens/Welcome/Welcome_Screen.dart';
 import 'package:backtracking/providers/customers.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +8,9 @@ import 'package:provider/provider.dart';
 class CustomerDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Customer currentCustomer = Provider.of<Customers>(context, listen: false).getCurrentCustomer();
+    Customers customerProvider = Provider.of<Customers>(context, listen: false);
+    Customer currentCustomer = customerProvider.getCurrentCustomer();
+
     return Drawer(
       child: Column(
         children: [
@@ -65,13 +68,17 @@ class CustomerDrawer extends StatelessWidget {
             height: 10,
           ),
           ListTile(
-            dense: true,
-            leading: Icon(Icons.shopping_cart),
-            title: Text('Orders'),
-            // onTap: () => Navigator.of(context).pushNamed(
-            // OrdersScreen.routeName,
-            // ),
-          ),
+              dense: true,
+              leading: Icon(Icons.shopping_cart),
+              title: Text('Orders'),
+              onTap: () {
+                customerProvider.fetchandSetOrders().then((value) {
+                  Navigator.of(context).pushNamed(
+                    ViewOrdersScreen.routeName,
+                    arguments: customerProvider.myOrders,
+                  );
+                });
+              }),
           Divider(),
           ListTile(
             dense: true,
