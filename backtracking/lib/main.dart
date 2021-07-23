@@ -1,3 +1,4 @@
+import 'package:backtracking/Screens/Customer/cart_screen.dart';
 import 'package:backtracking/Screens/Employee/employee_Home_screen.dart';
 import 'package:backtracking/Screens/Login/login_options.dart';
 import 'package:backtracking/Screens/Manager/OrderDetailsScreen.dart';
@@ -7,6 +8,7 @@ import 'package:backtracking/Screens/Manager/storeScreen.dart';
 import 'package:backtracking/Screens/Manager/viewOrders.dart';
 import 'package:backtracking/providers/Employees.dart';
 import 'package:backtracking/providers/Orders.dart';
+import 'package:backtracking/providers/cart.dart';
 import 'package:backtracking/providers/customers.dart';
 import 'package:backtracking/providers/inventories.dart';
 import 'package:flutter/material.dart';
@@ -55,6 +57,11 @@ class MyApp extends StatelessWidget {
           create: (_) {
             return Employees();
           },
+        ),
+        ChangeNotifierProvider<Cart>(
+          create: (_) {
+            return Cart();
+          },
         )
       ],
       child: MaterialApp(
@@ -82,7 +89,8 @@ class MyApp extends StatelessWidget {
           CustomerHomePage.routeName: (context) => CustomerHomePage(),
           LoginOptions.routeName: (context) => LoginOptions(),
           EmployeeHomePage.routeName: (context) => EmployeeHomePage(),
-          ViewOrdersScreen.routeName: (context) => ViewOrdersScreen()
+          ViewOrdersScreen.routeName: (context) => ViewOrdersScreen(),
+          CartScreen.routeName: (context) => CartScreen(),
         },
       ),
     );

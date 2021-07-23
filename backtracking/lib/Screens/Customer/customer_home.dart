@@ -1,7 +1,10 @@
-import 'package:backtracking/Screens/Welcome/Welcome_Screen.dart';
+import 'package:backtracking/Screens/Customer/cart_screen.dart';
+import 'package:backtracking/Widgets/badge.dart';
+import 'package:backtracking/Widgets/products_grid.dart';
+import 'package:backtracking/providers/cart.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import '../Welcome/components/Button.dart';
 import 'customer_drawer.dart';
 
 class CustomerHomePage extends StatelessWidget {
@@ -12,25 +15,26 @@ class CustomerHomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("Welcome"),
-      ),
-      drawer: CustomerDrawer(),
-      body: Column(
-        children: [
-          Center(
-            child: Text("Normal customer"),
-          ),
-          Button(
-            text: "LOG out",
-            press: () {
-              Navigator.of(context)
-                  .pushReplacementNamed(WelcomeScreen.routeName);
-            },
-            color: Color(0xFF6F35A5),
-            textColor: Colors.white,
-            width: 200,
+        actions: [
+          Consumer<Cart>(
+            builder: (context, cart, outerChild) => Badge(
+              child: outerChild,
+              value: cart.itemCount.toString(),
+              color: Colors.black,
+            ),
+            child: IconButton(
+              onPressed: () {
+                Navigator.pushNamed(context, CartScreen.routeName);
+              },
+              icon: Icon(
+                Icons.shopping_cart,
+              ),
+            ),
           ),
         ],
       ),
+      drawer: CustomerDrawer(),
+      body: ProductsGrid(),
     );
   }
 }

@@ -5,6 +5,8 @@ import 'package:flutter/foundation.dart';
 import '../Modules/order.dart';
 import '../api/api.dart';
 
+import '../providers/cart.dart';
+
 class Orders with ChangeNotifier {
   List<Order> _list = [];
 
@@ -50,4 +52,38 @@ class Orders with ChangeNotifier {
   Order findOrderByid(String id) {
     return _list.firstWhere((order) => order.id == id);
   }
+
+  Future<void> addOrder(List<CartItem> cartProducts, double total){
+
+  }
+
+  // Future<void> addOrder(List<CartItem> cartProducts, double total) async {
+  //   // final date = DateTime.now();
+  //   // final response = await CallApi().postData(
+  //   //   json.encode(
+  //   //     {
+  //   //       'amount': total,
+  //   //       'dateTime': date.toIso8601String(),
+  //   //       'products': cartProducts
+  //   //           .map((ci) => {
+  //   //                 "id": ci.id,
+  //   //                 "title": ci.title,
+  //   //                 "quantity": ci.quantity,
+  //   //                 "price": ci.price,
+  //   //               })
+  //   //           .toList(),
+  //   //     },
+  //   //   ),
+  //   //   "orders",
+  //   // );
+  //   // _list.insert(
+  //   //     0,
+  //   //     Order(
+  //   //       id: json.decode(response.body)['name'],
+  //   //       amount: total,
+  //   //       products: cartProducts,
+  //   //       dateTime: date,
+  //   //     ));
+  //   // notifyListeners();
+  // }
 }

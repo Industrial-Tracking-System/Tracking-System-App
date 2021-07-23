@@ -15,7 +15,8 @@ class Products with ChangeNotifier {
     for (var i = 0; i < extractedData.length; i++) {
       loadedProducts.add(
         Product(
-            id: extractedData[i]["id"],
+            price: extractedData[i]["cost"].toDouble(),
+            id: extractedData[i]["category_id"].toString(),
             quntity: extractedData[i]['quantity'],
             name: extractedData[i]['category_name'],
             imageUrl: extractedData[i]['image_path'],

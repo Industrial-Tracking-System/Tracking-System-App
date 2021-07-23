@@ -1,9 +1,13 @@
+import 'package:backtracking/Modules/customer.dart';
 import 'package:backtracking/Screens/Welcome/Welcome_Screen.dart';
+import 'package:backtracking/providers/customers.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class CustomerDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    Customer currentCustomer = Provider.of<Customers>(context, listen: false).getCurrentCustomer();
     return Drawer(
       child: Column(
         children: [
@@ -37,7 +41,7 @@ class CustomerDrawer extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 12),
                   child: Text(
-                    "Mohamed Ashraf",
+                    currentCustomer.customer_name,
                     style: TextStyle(
                       fontSize: 20,
                       color: Colors.white,
@@ -47,7 +51,7 @@ class CustomerDrawer extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(bottom: 12),
                   child: Text(
-                    "mohamedelesaily0@gmail.com",
+                    currentCustomer.email,
                     style: TextStyle(
                       fontSize: 15,
                       color: Colors.grey[350],
