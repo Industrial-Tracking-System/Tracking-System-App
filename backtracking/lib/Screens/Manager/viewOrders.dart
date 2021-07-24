@@ -1,6 +1,5 @@
-import 'package:backtracking/Modules/Inventory.dart';
 import 'package:backtracking/Modules/order.dart';
-import 'package:backtracking/Screens/Manager/ClientDetailsScreen.dart';
+
 import 'package:backtracking/components/myCard.dart';
 import 'package:backtracking/providers/customers.dart';
 import 'package:backtracking/providers/inventories.dart';

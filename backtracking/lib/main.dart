@@ -1,4 +1,5 @@
 import 'package:backtracking/Screens/Customer/cart_screen.dart';
+import 'package:backtracking/Screens/Employee/driverOrderDetail.dart';
 import 'package:backtracking/Screens/Employee/employee_Home_screen.dart';
 import 'package:backtracking/Screens/Login/login_options.dart';
 import 'package:backtracking/Screens/Manager/OrderDetailsScreen.dart';
@@ -91,6 +92,7 @@ class MyApp extends StatelessWidget {
           EmployeeHomePage.routeName: (context) => EmployeeHomePage(),
           ViewOrdersScreen.routeName: (context) => ViewOrdersScreen(),
           CartScreen.routeName: (context) => CartScreen(),
+          DriverOrderDetail.routeName: (context) => DriverOrderDetail(),
         },
       ),
     );

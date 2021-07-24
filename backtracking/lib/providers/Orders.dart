@@ -1,17 +1,15 @@
 import 'dart:convert';
 
-import 'package:backtracking/providers/customers.dart';
 import 'package:flutter/foundation.dart';
-import 'package:provider/provider.dart';
+
 import 'package:flutter/material.dart';
 
 import '../Modules/order.dart';
 import '../api/api.dart';
 
-import '../providers/cart.dart';
-
 class Orders with ChangeNotifier {
   List<Order> _list = [];
+  Order _loadedOrderToDeliver;
 
   Future<void> fetchandSetData() async {
     final response = await CallApi().getData("orders");
@@ -35,9 +33,36 @@ class Orders with ChangeNotifier {
         ),
       );
     }
-
     _list = loadedProducts;
     notifyListeners();
+  }
+
+  Future<void> fetchOrderToDriver(String Empolyee_id) async {
+    final response =
+        await CallApi().getData("employees/${Empolyee_id}/crrunt_orders");
+    final extractedData = json.decode(response.body) as Map<String, dynamic>;
+    if (extractedData["message"] == null) {
+      final Order loadedORder = Order(
+        id: extractedData["${Empolyee_id}"]["id"].toString(),
+        orderDate: DateTime.parse(extractedData["${Empolyee_id}"]['date']).add(
+          Duration(hours: 2),
+        ),
+        cost: extractedData["${Empolyee_id}"]['total_cost'],
+        status: extractedData["${Empolyee_id}"]['stauts'],
+        customer_id: extractedData["${Empolyee_id}"]['customer_id'].toString(),
+        inventory_id:
+            extractedData["${Empolyee_id}"]['inventory_id'].toString(),
+        employee_id: extractedData["${Empolyee_id}"]['employee_id'].toString(),
+        car_id: extractedData["${Empolyee_id}"]['car_id'].toString(),
+        quantity: 20,
+      );
+      _loadedOrderToDeliver = loadedORder;
+      notifyListeners();
+    }
+  }
+
+  get getcurrentOrderToDeliver {
+    return _loadedOrderToDeliver;
   }
 
   List<Order> findOrdersofInventories(String inventory_id) {

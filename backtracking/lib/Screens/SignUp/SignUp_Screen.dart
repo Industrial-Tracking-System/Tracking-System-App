@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:backtracking/Screens/Login/login_options.dart';
-import 'package:backtracking/Screens/Welcome/Welcome_Screen.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -12,7 +12,7 @@ import '../../components/rounded_password_field.dart';
 
 import '../Customer/customer_home.dart';
 import 'components/Sign_Up_background.dart';
-import '../../Screens/Login/LogIn_Screen.dart';
+
 import '../../api/api.dart';
 
 class SignUpScreen extends StatefulWidget {

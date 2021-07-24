@@ -4,7 +4,6 @@ import 'package:backtracking/Modules/customer.dart';
 import 'package:backtracking/Modules/order.dart';
 import 'package:backtracking/api/api.dart';
 import 'package:flutter/material.dart';
-import 'package:location/location.dart';
 
 class Customers with ChangeNotifier {
   List<Customer> _list = [];
@@ -27,6 +26,22 @@ class Customers with ChangeNotifier {
     }
 
     _list = loadedProducts;
+    notifyListeners();
+  }
+
+  Future<void> fetchCustomer(String customer_id) async {
+    final response = await CallApi().getData("customers/${customer_id}");
+    final extractedData = json.decode(response.body) as Map<String, dynamic>;
+    print("Customer  " + response.body);
+    final Customer loadedCustomer = Customer(
+        company_name: extractedData["company_name"],
+        customer_id: extractedData["id"].toString(),
+        customer_name: extractedData["name"],
+        email: extractedData["email"],
+        location: extractedData["address"],
+        phone: extractedData["phone"],
+        apitoken: extractedData["api_token"]);
+    _currentCustomer = loadedCustomer;
     notifyListeners();
   }
 

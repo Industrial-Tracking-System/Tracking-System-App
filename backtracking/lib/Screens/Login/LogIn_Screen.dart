@@ -34,7 +34,7 @@ class _LogInScreenState extends State<LogInScreen> {
   final _passwordController = TextEditingController();
 
   bool _isVerifying = false;
-  void directCustomer(Map<String, dynamic> userData) async{
+  void directCustomer(Map<String, dynamic> userData) async {
     if (userData["message"] != null) {
       showDialog(
         context: context,
@@ -52,7 +52,8 @@ class _LogInScreenState extends State<LogInScreen> {
         ),
       );
     } else {
-      Provider.of<Customers>(context, listen: false).setCurrentCustomer(userData);
+      Provider.of<Customers>(context, listen: false)
+          .setCurrentCustomer(userData);
       await Provider.of<Products>(context, listen: false).fetchandSetData();
       Navigator.of(context).pushReplacementNamed(CustomerHomePage.routeName);
     }
@@ -87,6 +88,16 @@ class _LogInScreenState extends State<LogInScreen> {
         ProductionScreen.routeName,
       );
     } else {
+      Provider.of<Employees>(context, listen: false)
+          .setCurrentEmployeeData(userData);
+      Orders orderObj = Provider.of<Orders>(context, listen: false);
+      await orderObj.fetchOrderToDriver(userData["id"].toString());
+      if (orderObj.getcurrentOrderToDeliver != null) {
+        await Provider.of<Customers>(context, listen: false)
+            .fetchCustomer((orderObj.getcurrentOrderToDeliver.customer_id));
+        await Provider.of<Inventories>(context, listen: false)
+            .fetchInventory((orderObj.getcurrentOrderToDeliver.inventory_id));
+      }
       Navigator.of(context).pushReplacementNamed(
         EmployeeHomePage.routeName,
       );

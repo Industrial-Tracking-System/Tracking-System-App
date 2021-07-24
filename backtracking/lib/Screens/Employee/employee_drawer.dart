@@ -1,9 +1,14 @@
+import 'package:backtracking/Modules/employee.dart';
 import 'package:backtracking/Screens/Welcome/Welcome_Screen.dart';
+import 'package:backtracking/providers/Employees.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class EmployeeDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    Employee employeeData =
+        Provider.of<Employees>(context, listen: false).getCurrentEmployeeData;
     return Drawer(
       child: Column(
         children: [
@@ -30,14 +35,13 @@ class EmployeeDrawer extends StatelessWidget {
                   height: 65,
                   width: 65,
                   child: CircleAvatar(
-                    backgroundImage: NetworkImage(
-                        "https://cdn.pixabay.com/photo/2016/10/02/22/17/red-t-shirt-1710578_1280.jpg"),
+                    backgroundImage: NetworkImage(employeeData.imageUrl),
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 12),
                   child: Text(
-                    "Mohamed Ashraf",
+                    employeeData.name,
                     style: TextStyle(
                       fontSize: 20,
                       color: Colors.white,
@@ -47,7 +51,7 @@ class EmployeeDrawer extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(bottom: 12),
                   child: Text(
-                    "mohamedelesaily0@gmail.com",
+                    employeeData.email,
                     style: TextStyle(
                       fontSize: 15,
                       color: Colors.grey[350],
@@ -64,9 +68,6 @@ class EmployeeDrawer extends StatelessWidget {
             dense: true,
             leading: Icon(Icons.shopping_cart),
             title: Text('Orders'),
-            // onTap: () => Navigator.of(context).pushNamed(
-            // OrdersScreen.routeName,
-            // ),
           ),
           Divider(),
           ListTile(
