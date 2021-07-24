@@ -11,7 +11,6 @@ class Employees with ChangeNotifier {
     final response = await CallApi().getData("employees");
     final userData = json.decode(response.body) as List<dynamic>;
     final List<Employee> loadedEmployees = [];
-
     for (var i = 0; i < userData.length; i++) {
       loadedEmployees.add(
         Employee(

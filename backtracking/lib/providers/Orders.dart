@@ -11,8 +11,8 @@ class Orders with ChangeNotifier {
   List<Order> _list = [];
   Order _loadedOrderToDeliver;
 
-  Future<void> fetchandSetData() async {
-    final response = await CallApi().getData("orders");
+  Future<void> fetchandSetData(String path) async {
+    final response = await CallApi().getData(path);
     final extractedData = json.decode(response.body) as List<dynamic>;
     final List<Order> loadedProducts = [];
 
@@ -41,19 +41,19 @@ class Orders with ChangeNotifier {
     final response =
         await CallApi().getData("employees/${Empolyee_id}/crrunt_orders");
     final extractedData = json.decode(response.body) as Map<String, dynamic>;
+
     if (extractedData["message"] == null) {
       final Order loadedORder = Order(
-        id: extractedData["${Empolyee_id}"]["id"].toString(),
-        orderDate: DateTime.parse(extractedData["${Empolyee_id}"]['date']).add(
+        id: extractedData["id"].toString(),
+        orderDate: DateTime.parse(extractedData["date"]).add(
           Duration(hours: 2),
         ),
-        cost: extractedData["${Empolyee_id}"]['total_cost'],
-        status: extractedData["${Empolyee_id}"]['stauts'],
-        customer_id: extractedData["${Empolyee_id}"]['customer_id'].toString(),
-        inventory_id:
-            extractedData["${Empolyee_id}"]['inventory_id'].toString(),
-        employee_id: extractedData["${Empolyee_id}"]['employee_id'].toString(),
-        car_id: extractedData["${Empolyee_id}"]['car_id'].toString(),
+        cost: extractedData['total_cost'],
+        status: extractedData['stauts'],
+        customer_id: extractedData['customer_id'].toString(),
+        inventory_id: extractedData['inventory_id'].toString(),
+        employee_id: extractedData['employee_id'].toString(),
+        car_id: extractedData['car_id'].toString(),
         quantity: 20,
       );
       _loadedOrderToDeliver = loadedORder;

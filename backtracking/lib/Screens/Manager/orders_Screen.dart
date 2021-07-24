@@ -17,7 +17,7 @@ class OrdersScreen extends StatefulWidget {
 
 class _OrdersScreenState extends State<OrdersScreen> {
   Future<void> _refreshProducts(BuildContext context) async {
-    await Provider.of<Orders>(context, listen: false).fetchandSetData();
+    await Provider.of<Orders>(context, listen: false).fetchandSetData("orders");
   }
 
   @override

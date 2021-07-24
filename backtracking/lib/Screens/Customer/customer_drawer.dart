@@ -72,10 +72,8 @@ class CustomerDrawer extends StatelessWidget {
               title: Text('Orders'),
               onTap: () {
                 customerProvider.fetchandSetOrders().then((value) {
-                  Navigator.of(context).pushNamed(
-                    ViewOrdersScreen.routeName,
-                    arguments: customerProvider.myOrders,
-                  );
+                  Navigator.of(context).pushNamed(ViewOrdersScreen.routeName,
+                      arguments: [customerProvider.myOrders, true]);
                 });
               }),
           Divider(),

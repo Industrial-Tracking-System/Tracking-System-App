@@ -33,7 +33,6 @@ class ViewOrdersScreen extends StatelessWidget {
               .findInventoryByid(data[0].inventory_id)
               .inventory_name;
     }
-
     return Scaffold(
         appBar: AppBar(
           title: isClient

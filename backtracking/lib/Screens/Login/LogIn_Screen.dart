@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:backtracking/Modules/customer.dart';
 import 'package:backtracking/Screens/Customer/customer_home.dart';
 import 'package:backtracking/Screens/Employee/employee_Home_screen.dart';
 import 'package:backtracking/Screens/Manager/production.dart';
@@ -81,7 +80,7 @@ class _LogInScreenState extends State<LogInScreen> {
       Provider.of<Employees>(context, listen: false)
           .setCurrentEmployeeData(userData);
       Provider.of<Products>(context, listen: false).fetchandSetData();
-      Provider.of<Orders>(context, listen: false).fetchandSetData();
+      Provider.of<Orders>(context, listen: false).fetchandSetData("orders");
       await Provider.of<Customers>(context, listen: false).fetchandSetData();
       Provider.of<Inventories>(context, listen: false).fetchandSetData();
       Navigator.of(context).pushReplacementNamed(
@@ -90,6 +89,8 @@ class _LogInScreenState extends State<LogInScreen> {
     } else {
       Provider.of<Employees>(context, listen: false)
           .setCurrentEmployeeData(userData);
+      Provider.of<Orders>(context, listen: false)
+          .fetchandSetData("employees/${userData["id"]}/orders");
       Orders orderObj = Provider.of<Orders>(context, listen: false);
       await orderObj.fetchOrderToDriver(userData["id"].toString());
       if (orderObj.getcurrentOrderToDeliver != null) {

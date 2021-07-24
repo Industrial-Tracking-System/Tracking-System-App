@@ -64,11 +64,6 @@ class EmployeeDrawer extends StatelessWidget {
           SizedBox(
             height: 10,
           ),
-          ListTile(
-            dense: true,
-            leading: Icon(Icons.shopping_cart),
-            title: Text('Orders'),
-          ),
           Divider(),
           ListTile(
             dense: true,
