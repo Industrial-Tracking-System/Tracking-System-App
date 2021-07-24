@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:backtracking/Screens/Login/login_options.dart';
+import 'package:backtracking/Screens/Welcome/Welcome_Screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -100,7 +102,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               AlreadyHaveAnAccountCheck(
                 login: false,
                 press: () => Navigator.of(context).pushReplacementNamed(
-                  LogInScreen.routeName,
+                  LoginOptions.routeName,
                 ),
               ),
               SizedBox(

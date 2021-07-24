@@ -14,6 +14,7 @@ class ManagerDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     Employee employeeData =
         Provider.of<Employees>(context, listen: false).getCurrentEmployeeData;
+
     return Drawer(
       child: Column(
         children: [
@@ -40,8 +41,7 @@ class ManagerDrawer extends StatelessWidget {
                   height: 65,
                   width: 65,
                   child: CircleAvatar(
-                    backgroundImage: NetworkImage(
-                        "https://cdn.pixabay.com/photo/2016/10/02/22/17/red-t-shirt-1710578_1280.jpg"),
+                    backgroundImage: NetworkImage(employeeData.imageUrl),
                   ),
                 ),
                 Padding(

@@ -7,6 +7,7 @@ class Employee {
   int available;
   final String job_title;
   final String factory_id;
+  final String imageUrl;
 
   Employee(
       {this.empolyee_id,
@@ -16,5 +17,6 @@ class Employee {
       this.factory_id,
       this.job_title,
       this.name,
-      this.phone});
+      this.phone,
+      this.imageUrl});
 }

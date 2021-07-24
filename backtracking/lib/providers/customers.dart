@@ -32,17 +32,17 @@ class Customers with ChangeNotifier {
 
   void setCurrentCustomer(Map<String, dynamic> extractedData) {
     _currentCustomer = Customer(
-      company_name: extractedData["company_name"],
-      customer_id: extractedData["id"].toString(),
-      customer_name: extractedData["name"],
-      email: extractedData["email"],
-      location: extractedData["address"],
-      phone: extractedData["phone"],
-      apitoken: extractedData["api_token"],
-    );
+        company_name: extractedData["company_name"],
+        customer_id: extractedData["id"].toString(),
+        customer_name: extractedData["name"],
+        email: extractedData["email"],
+        location: extractedData["address"],
+        phone: extractedData["phone"],
+        apitoken: extractedData["api_token"],
+        imageUrl: extractedData["imageUrl"]);
   }
 
-  Customer getCurrentCustomer(){
+  Customer getCurrentCustomer() {
     return _currentCustomer;
   }
 
@@ -57,7 +57,8 @@ class Customers with ChangeNotifier {
   List<Order> _myOrders = [];
 
   Future<void> fetchandSetOrders() async {
-    final response = await CallApi().getData("${_currentCustomer.customer_id}/orders");
+    final response =
+        await CallApi().getData("${_currentCustomer.customer_id}/orders");
     final extractedData = json.decode(response.body) as List<dynamic>;
     final List<Order> loadedProducts = [];
 
@@ -79,12 +80,11 @@ class Customers with ChangeNotifier {
       );
     }
 
-   _myOrders = loadedProducts;
+    _myOrders = loadedProducts;
     notifyListeners();
   }
 
-  get myOrders{
+  get myOrders {
     return [..._myOrders];
   }
-
 }

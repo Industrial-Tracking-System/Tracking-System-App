@@ -133,7 +133,7 @@ class StoreDetailsScreen extends StatelessWidget {
                           press: () {
                             Navigator.of(context).pushNamed(
                                 ViewOrdersScreen.routeName,
-                                arguments: orders);
+                                arguments: [orders, false]);
                           },
                           text: "VIWE ORDERS",
                           textColor: Theme.of(context).primaryColor,

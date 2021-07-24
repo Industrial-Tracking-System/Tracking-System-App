@@ -22,7 +22,8 @@ class Employees with ChangeNotifier {
             job_title: userData[i]["job_tittle"],
             factory_id: userData[i]["factory_id"],
             isManger: userData[i]["is_manager"],
-            phone: userData[i]["phone"]),
+            phone: userData[i]["phone"],
+            imageUrl: userData[i]["imageUrl"]),
       );
     }
 
@@ -39,7 +40,8 @@ class Employees with ChangeNotifier {
         job_title: userData["job_tittle"],
         factory_id: userData["factory_id"],
         isManger: userData["is_manager"],
-        phone: userData["phone"]);
+        phone: userData["phone"],
+        imageUrl: userData["imageUrl"]);
   }
 
   get getCurrentEmployeeData {

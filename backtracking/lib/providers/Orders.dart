@@ -11,8 +11,6 @@ import '../api/api.dart';
 import '../providers/cart.dart';
 
 class Orders with ChangeNotifier {
-
-
   List<Order> _list = [];
 
   Future<void> fetchandSetData() async {
@@ -41,24 +39,6 @@ class Orders with ChangeNotifier {
     _list = loadedProducts;
     notifyListeners();
   }
-
-  // Future<void> sendOrderTodatabase(List<CartItem> cartProducts) async {
-  //   List<String> productsIds;
-  //   List<int> productsQuantities;
-
-  //   for (int i = 0; i < cartProducts.length; i++) {
-  //     productsIds.add(cartProducts[i].id);
-  //     productsQuantities.add(cartProducts[i].quantity);
-  //   }
-
-  //   Map<String, dynamic> myOrder = {
-  //     "customer_id": "1",
-  //     "numOfProducs": cartProducts.length,
-  //     "productsIds": productsIds,
-  //     "quantites": productsQuantities,
-  //   };
-  //   await CallApi().postData(myOrder, "make_order");
-  // }
 
   List<Order> findOrdersofInventories(String inventory_id) {
     return _list.where((order) => order.inventory_id == inventory_id).toList();

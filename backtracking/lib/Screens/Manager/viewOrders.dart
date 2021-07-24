@@ -1,6 +1,9 @@
+import 'package:backtracking/Modules/Inventory.dart';
 import 'package:backtracking/Modules/order.dart';
+import 'package:backtracking/Screens/Manager/ClientDetailsScreen.dart';
 import 'package:backtracking/components/myCard.dart';
 import 'package:backtracking/providers/customers.dart';
+import 'package:backtracking/providers/inventories.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -11,12 +14,32 @@ class ViewOrdersScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<Order> data = ModalRoute.of(context).settings.arguments;
+    List<dynamic> args = ModalRoute.of(context).settings.arguments;
+    final List<Order> data = args[0];
+    final bool isClient = args[1];
+    String clientName;
+    String inventoryName;
+
     final customer = Provider.of<Customers>(context, listen: false);
+    if (isClient) {
+      clientName = data.isEmpty
+          ? "No"
+          : Provider.of<Customers>(context)
+              .findCustomerById(data[0].customer_id)
+              .company_name;
+    } else {
+      inventoryName = data.isEmpty
+          ? "No"
+          : Provider.of<Inventories>(context)
+              .findInventoryByid(data[0].inventory_id)
+              .inventory_name;
+    }
 
     return Scaffold(
         appBar: AppBar(
-          title: Text("Orders"),
+          title: isClient
+              ? Text(clientName + " ORDERS")
+              : Text(inventoryName + " ORDERS"),
         ),
         backgroundColor: Colors.white,
         body: ListView.builder(

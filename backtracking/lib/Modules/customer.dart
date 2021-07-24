@@ -14,6 +14,7 @@ class Customer {
   final String email;
 
   final String apitoken;
+  final String imageUrl;
 
   Customer(
       {this.customer_id,
@@ -22,5 +23,6 @@ class Customer {
       this.location,
       this.phone,
       this.company_name,
-      this.apitoken});
+      this.apitoken,
+      this.imageUrl});
 }

@@ -1,3 +1,4 @@
+import 'package:backtracking/Modules/order.dart';
 import 'package:backtracking/Screens/Manager/viewOrders.dart';
 import 'package:backtracking/Screens/Welcome/components/Button.dart';
 import 'package:backtracking/providers/Orders.dart';
@@ -165,8 +166,9 @@ class ClientDetailsScreen extends StatelessWidget {
                           color: Color(0xFFF1E6FF),
                           press: () {
                             Navigator.of(context).pushNamed(
-                                ViewOrdersScreen.routeName,
-                                arguments: customerOrders);
+                              ViewOrdersScreen.routeName,
+                              arguments: [customerOrders, true],
+                            );
                           },
                           text: "View Orders",
                           textColor: Theme.of(context).primaryColor,
