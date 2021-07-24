@@ -51,6 +51,11 @@ class Employees with ChangeNotifier {
     return [..._list];
   }
 
+  Future<void> logout() async {
+    await CallApi()
+        .postData(json.encode({"id": _currentUserdata.empolyee_id}), "logout");
+  }
+
   Employee findEmployeeByid(String id) {
     return _list.firstWhere((employee) => employee.empolyee_id == id);
   }

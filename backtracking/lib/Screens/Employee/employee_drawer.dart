@@ -7,8 +7,8 @@ import 'package:provider/provider.dart';
 class EmployeeDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Employee employeeData =
-        Provider.of<Employees>(context, listen: false).getCurrentEmployeeData;
+    Employees employeeProvider = Provider.of<Employees>(context, listen: false);
+    Employee employeeData = employeeProvider.getCurrentEmployeeData;
     return Drawer(
       child: Column(
         children: [
@@ -69,9 +69,12 @@ class EmployeeDrawer extends StatelessWidget {
             dense: true,
             leading: Icon(Icons.exit_to_app),
             title: Text('Logout'),
-            onTap: () => Navigator.of(context).pushReplacementNamed(
-              WelcomeScreen.routeName,
-            ),
+            onTap: (){
+              employeeProvider.logout();
+              Navigator.of(context).pushReplacementNamed(
+              WelcomeScreen.routeName);
+            } 
+            
           ),
         ],
       ),

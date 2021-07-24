@@ -99,6 +99,11 @@ class Customers with ChangeNotifier {
     notifyListeners();
   }
 
+  Future<void> logout() async {
+    await CallApi().postData(
+        json.encode({"id": _currentCustomer.customer_id}), "customer_logout");
+  }
+
   get myOrders {
     return [..._myOrders];
   }

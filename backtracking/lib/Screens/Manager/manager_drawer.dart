@@ -12,9 +12,8 @@ import 'orders_Screen.dart';
 class ManagerDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Employee employeeData =
-        Provider.of<Employees>(context, listen: false).getCurrentEmployeeData;
-
+    Employees employeeProvider = Provider.of<Employees>(context, listen: false);
+    Employee employeeData = employeeProvider.getCurrentEmployeeData;
     return Drawer(
       child: Column(
         children: [
@@ -136,16 +135,18 @@ class ManagerDrawer extends StatelessWidget {
             height: 5,
           ),
           ListTile(
-            dense: true,
-            leading: Icon(
-              Icons.exit_to_app,
-              size: 30,
-            ),
-            title: Text('Logout', style: TextStyle(fontSize: 15)),
-            onTap: () => Navigator.of(context).pushReplacementNamed(
-              WelcomeScreen.routeName,
-            ),
-          ),
+              dense: true,
+              leading: Icon(
+                Icons.exit_to_app,
+                size: 30,
+              ),
+              title: Text('Logout', style: TextStyle(fontSize: 15)),
+              onTap: () {
+                employeeProvider.logout();
+                Navigator.of(context).pushReplacementNamed(
+                  WelcomeScreen.routeName,
+                );
+              }),
           Divider(),
         ],
       ),
