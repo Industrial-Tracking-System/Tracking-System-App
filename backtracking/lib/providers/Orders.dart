@@ -34,32 +34,38 @@ class Orders with ChangeNotifier {
       );
     }
     _list = loadedProducts;
+    print(_list);
     notifyListeners();
   }
 
-  Future<void> fetchOrderToDriver(String Empolyee_id) async {
-    final response =
-        await CallApi().getData("employees/${Empolyee_id}/crrunt_orders");
-    final extractedData = json.decode(response.body) as Map<String, dynamic>;
-
-    if (extractedData["message"] == null) {
-      final Order loadedORder = Order(
-        id: extractedData["id"].toString(),
-        orderDate: DateTime.parse(extractedData["date"]).add(
-          Duration(hours: 2),
-        ),
-        cost: extractedData['total_cost'],
-        status: extractedData['stauts'],
-        customer_id: extractedData['customer_id'].toString(),
-        inventory_id: extractedData['inventory_id'].toString(),
-        employee_id: extractedData['employee_id'].toString(),
-        car_id: extractedData['car_id'].toString(),
-        quantity: 20,
-      );
-      _loadedOrderToDeliver = loadedORder;
-      notifyListeners();
-    }
+  void fetchOrderToDriver() {
+    _loadedOrderToDeliver =
+        _list.firstWhere((element) => element.status == "on way");
   }
+
+  // Future<void> fetchOrderToDriver(String Empolyee_id) async {
+  //   final response =
+  //       await CallApi().getData("employees/${Empolyee_id}/crrunt_orders");
+  //   final extractedData = json.decode(response.body) as Map<String, dynamic>;
+
+  //   if (extractedData["message"] == null) {
+  //     final Order loadedORder = Order(
+  //       id: extractedData["id"].toString(),
+  //       orderDate: DateTime.parse(extractedData["date"]).add(
+  //         Duration(hours: 2),
+  //       ),
+  //       cost: extractedData['total_cost'],
+  //       status: extractedData['stauts'],
+  //       customer_id: extractedData['customer_id'].toString(),
+  //       inventory_id: extractedData['inventory_id'].toString(),
+  //       employee_id: extractedData['employee_id'].toString(),
+  //       car_id: extractedData['car_id'].toString(),
+  //       quantity: 20,
+  //     );
+  //     _loadedOrderToDeliver = loadedORder;
+  //     notifyListeners();
+  //   }
+  // }
 
   get getcurrentOrderToDeliver {
     return _loadedOrderToDeliver;

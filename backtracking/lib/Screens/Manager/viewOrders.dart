@@ -21,11 +21,8 @@ class ViewOrdersScreen extends StatelessWidget {
 
     final customer = Provider.of<Customers>(context, listen: false);
     if (isClient) {
-      clientName = data.isEmpty
-          ? "No"
-          : Provider.of<Customers>(context)
-              .findCustomerById(data[0].customer_id)
-              .company_name;
+      // clientName = "mohamed";
+      clientName =  customer.getCurrentCustomer().company_name;
     } else {
       inventoryName = data.isEmpty
           ? "No"
@@ -42,11 +39,12 @@ class ViewOrdersScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         body: ListView.builder(
           itemBuilder: (context, index) => MyCard(
+            isClient: isClient,
             imageLink:
                 "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrxQ6QUCj7QIik6HZmgg9pAXNrLVv7Az3DfQ&usqp=CAU",
             id: data[index].id,
             routename: OrderDetailsScreen.routename,
-            title: customer.getCurrentCustomer() == null
+            title: !isClient
                 ? customer
                     .findCustomerById(data[index].customer_id)
                     .company_name

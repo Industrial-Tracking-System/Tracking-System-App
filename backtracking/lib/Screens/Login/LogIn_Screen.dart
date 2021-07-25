@@ -75,24 +75,24 @@ class _LogInScreenState extends State<LogInScreen> {
           ],
         ),
       );
-    } else if (userData["is_manager"] == 1) {
+    } else if (userData["is_manager"] == 1) { // fetching for manager
       Provider.of<Employees>(context, listen: false).fetchandSetData();
       Provider.of<Employees>(context, listen: false)
           .setCurrentEmployeeData(userData);
       Provider.of<Products>(context, listen: false).fetchandSetData();
       Provider.of<Orders>(context, listen: false).fetchandSetData("orders");
       await Provider.of<Customers>(context, listen: false).fetchandSetData();
-      Provider.of<Inventories>(context, listen: false).fetchandSetData();
+      await Provider.of<Inventories>(context, listen: false).fetchandSetData();
       Navigator.of(context).pushReplacementNamed(
         ProductionScreen.routeName,
       );
-    } else {
+    } else { // fetching for Driver
       Provider.of<Employees>(context, listen: false)
           .setCurrentEmployeeData(userData);
-      Provider.of<Orders>(context, listen: false)
+      await Provider.of<Orders>(context, listen: false)
           .fetchandSetData("employees/${userData["id"]}/orders");
       Orders orderObj = Provider.of<Orders>(context, listen: false);
-      await orderObj.fetchOrderToDriver(userData["id"].toString());
+      orderObj.fetchOrderToDriver();
       if (orderObj.getcurrentOrderToDeliver != null) {
         await Provider.of<Customers>(context, listen: false)
             .fetchCustomer((orderObj.getcurrentOrderToDeliver.customer_id));

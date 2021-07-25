@@ -20,6 +20,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
     await Provider.of<Orders>(context, listen: false).fetchandSetData("orders");
   }
 
+  bool isClient = false;
   @override
   Widget build(BuildContext context) {
     final customer = Provider.of<Customers>(context, listen: false);
@@ -35,6 +36,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
         child: Consumer<Orders>(
           builder: (ctx, orderProvider, _) => ListView.builder(
             itemBuilder: (context, index) => MyCard(
+              isClient: isClient,
               imageLink:
                   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrxQ6QUCj7QIik6HZmgg9pAXNrLVv7Az3DfQ&usqp=CAU",
               id: orderProvider.myOrders[index].id,

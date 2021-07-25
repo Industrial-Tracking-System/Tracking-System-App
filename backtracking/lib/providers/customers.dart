@@ -69,11 +69,15 @@ class Customers with ChangeNotifier {
     return _list.firstWhere((customer) => customer.customer_id == id);
   }
 
+  Order findOrderById(String id) {
+    return _myOrders.firstWhere((order) => order.id == id);
+  }
+
   List<Order> _myOrders = [];
 
   Future<void> fetchandSetOrders() async {
     final response =
-        await CallApi().getData("${_currentCustomer.customer_id}/orders");
+        await CallApi().getData("customers/${_currentCustomer.customer_id}/orders");
     final extractedData = json.decode(response.body) as List<dynamic>;
     final List<Order> loadedProducts = [];
 

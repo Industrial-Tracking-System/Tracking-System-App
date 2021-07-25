@@ -6,6 +6,7 @@ class MyCard extends StatelessWidget {
   final String subtitle;
   final String routename;
   final String imageLink;
+  final bool isClient;
 
   MyCard({
     this.id,
@@ -13,13 +14,14 @@ class MyCard extends StatelessWidget {
     this.subtitle,
     this.routename,
     this.imageLink,
+    this.isClient,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).pushNamed(routename, arguments: id);
+        Navigator.of(context).pushNamed(routename, arguments: [id, isClient]);
       },
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
