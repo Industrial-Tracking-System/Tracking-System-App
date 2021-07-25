@@ -42,7 +42,7 @@ class StoreDetailsScreen extends StatelessWidget {
               width: double.infinity,
               color: Colors.white,
               child: Image.asset(
-                "assets/icons/stores_icon.jpg",
+                "assets/images/stores_icon.jpg",
                 fit: BoxFit.cover,
               ),
             ),
