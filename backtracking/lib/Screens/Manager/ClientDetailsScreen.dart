@@ -13,7 +13,8 @@ class ClientDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    final customerId = ModalRoute.of(context).settings.arguments as String;
+    final arg= ModalRoute.of(context).settings.arguments as List;
+    final customerId = arg[0];
     final customer =
         Provider.of<Customers>(context).findCustomerById(customerId);
     final customerOrders = Provider.of<Orders>(context, listen: false)
@@ -166,7 +167,7 @@ class ClientDetailsScreen extends StatelessWidget {
                           press: () {
                             Navigator.of(context).pushNamed(
                               ViewOrdersScreen.routeName,
-                              arguments: [customerOrders, true],
+                              arguments: [customerOrders, false],
                             );
                           },
                           text: "View Orders",

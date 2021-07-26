@@ -16,7 +16,8 @@ class StoreDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    final inventoryId = ModalRoute.of(context).settings.arguments as String;
+    final arg = ModalRoute.of(context).settings.arguments as List; 
+    final inventoryId = arg[0];
     final inventory =
         Provider.of<Inventories>(context).findInventoryByid(inventoryId);
     final orders = Provider.of<Orders>(context, listen: false)
@@ -135,7 +136,7 @@ class StoreDetailsScreen extends StatelessWidget {
                                 ViewOrdersScreen.routeName,
                                 arguments: [orders, false]);
                           },
-                          text: "VIWE ORDERS",
+                          text: "VIEW ORDERS",
                           textColor: Theme.of(context).primaryColor,
                           width: size.width * 0.6,
                         ),

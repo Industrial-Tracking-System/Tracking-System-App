@@ -81,9 +81,12 @@ class CustomerDrawer extends StatelessWidget {
             dense: true,
             leading: Icon(Icons.exit_to_app),
             title: Text('Logout'),
-            onTap: () => Navigator.of(context).pushReplacementNamed(
-              WelcomeScreen.routeName,
-            ),
+            onTap: (){
+              customerProvider.logout();
+              Navigator.of(context).pushReplacementNamed(
+              WelcomeScreen.routeName);
+            } 
+            
           ),
         ],
       ),

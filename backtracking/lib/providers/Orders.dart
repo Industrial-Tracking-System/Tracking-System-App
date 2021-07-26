@@ -39,8 +39,9 @@ class Orders with ChangeNotifier {
   }
 
   void fetchOrderToDriver() {
-    _loadedOrderToDeliver =
-        _list.firstWhere((element) => element.status == "on way");
+    _loadedOrderToDeliver = _list.firstWhere(
+        (element) => element.status == "on way",
+        orElse: () => null);
   }
 
   // Future<void> fetchOrderToDriver(String Empolyee_id) async {

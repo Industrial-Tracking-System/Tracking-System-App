@@ -19,7 +19,8 @@ class Customers with ChangeNotifier {
             customer_id: extractedData[i]["id"].toString(),
             customer_name: extractedData[i]["name"],
             email: extractedData[i]["email"],
-            location: extractedData[i]["address"],
+            latitude: extractedData[i]["latitude"],
+            longtude: extractedData[i]["longitude"],
             phone: extractedData[i]["phone"],
             apitoken: extractedData[i]["api_token"]),
       );
@@ -30,7 +31,7 @@ class Customers with ChangeNotifier {
   }
 
   Future<void> fetchCustomer(String customer_id) async {
-    final response = await CallApi().getData("customers/${customer_id}");
+    final response = await CallApi().getData("customers/$customer_id");
     final extractedData = json.decode(response.body) as Map<String, dynamic>;
     print("Customer  " + response.body);
     final Customer loadedCustomer = Customer(
@@ -38,7 +39,8 @@ class Customers with ChangeNotifier {
         customer_id: extractedData["id"].toString(),
         customer_name: extractedData["name"],
         email: extractedData["email"],
-        location: extractedData["address"],
+        latitude: extractedData["latitude"],
+        longtude: extractedData["longitude"],
         phone: extractedData["phone"],
         apitoken: extractedData["api_token"]);
     _currentCustomer = loadedCustomer;
@@ -51,12 +53,18 @@ class Customers with ChangeNotifier {
         customer_id: extractedData["id"].toString(),
         customer_name: extractedData["name"],
         email: extractedData["email"],
-        location: extractedData["address"],
+        latitude: extractedData["latitude"],
+        longtude: extractedData["longitude"],
         phone: extractedData["phone"],
         apitoken: extractedData["api_token"],
         imageUrl: extractedData["imageUrl"]);
   }
-
+  Future<void> confiremOrder(String orderId ) async {
+     await CallApi().postData({"order_id":orderId},"order_arrived").then((value){
+       print(value.body);
+     });
+    // print(response.body);
+      }
   Customer getCurrentCustomer() {
     return _currentCustomer;
   }
@@ -70,14 +78,14 @@ class Customers with ChangeNotifier {
   }
 
   Order findOrderById(String id) {
-    return _myOrders.firstWhere((order) => order.id == id);
+    return _myOrders.firstWhere((order) => order.id == id, orElse: ()=>null);
   }
 
   List<Order> _myOrders = [];
 
   Future<void> fetchandSetOrders() async {
-    final response =
-        await CallApi().getData("customers/${_currentCustomer.customer_id}/orders");
+    final response = await CallApi()
+        .getData("customers/${_currentCustomer.customer_id}/orders");
     final extractedData = json.decode(response.body) as List<dynamic>;
     final List<Order> loadedProducts = [];
 
@@ -105,7 +113,9 @@ class Customers with ChangeNotifier {
 
   Future<void> logout() async {
     await CallApi().postData(
-        json.encode({"id": _currentCustomer.customer_id}), "customer_logout");
+        {"id": _currentCustomer.customer_id}, "customer_logout").then((value){
+          print(value.body);
+        });
   }
 
   get myOrders {

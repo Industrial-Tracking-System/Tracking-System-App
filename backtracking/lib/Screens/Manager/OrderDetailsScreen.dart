@@ -29,29 +29,45 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
     final arguments = ModalRoute.of(context).settings.arguments as List;
     final orderId = arguments[0];
     final isClient = arguments[1];
+    Customers customersProvider =
+        Provider.of<Customers>(context, listen: false);
 
     if (!isClient) {
       if (isLoading) {
         Employees employeesProvider = Provider.of(context, listen: false);
+        myOrder =
+            Provider.of<Orders>(context, listen: false).findOrderByid(orderId);
         // load data for Manager
         if (employeesProvider.getCurrentEmployeeData.isManger == 1) {
           print("hello manager");
-          myOrder = Provider.of<Orders>(context, listen: false)
-              .findOrderByid(orderId);
           customer = Provider.of<Customers>(context, listen: false)
               .findCustomerById(myOrder.customer_id);
           inventory = Provider.of<Inventories>(context, listen: false)
               .findInventoryByid(myOrder.inventory_id);
+
+          setState(() {
+            isLoading = false;
+          });
         } else {
           // load data for Driver
 
+          customersProvider.fetchCustomer(myOrder.customer_id).then((value) {
+            customer = customersProvider.getCurrentCustomer();
+          });
+          Inventories inventoryProvider =
+              Provider.of<Inventories>(context, listen: false);
+          inventoryProvider.fetchInventory(myOrder.inventory_id).then((value) {
+            inventory = inventoryProvider.getCurrentInventory();
+            setState(() {
+              isLoading = false;
+            });
+          });
         }
       }
     } else {
       // load data for customer
       if (isLoading) {
-        Customers customersProvider =
-            Provider.of<Customers>(context, listen: false);
+        customersProvider = Provider.of<Customers>(context, listen: false);
         myOrder = customersProvider.findOrderById(orderId);
         customer = customersProvider.getCurrentCustomer();
         Inventories inventoryProvider =
@@ -251,24 +267,30 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                         ),
                       ),
                       isClient
-                          ? Container(
-                              margin: EdgeInsets.symmetric(
-                                  vertical: size.height * 0.03),
-                              child: ElevatedButton(
-                                  child: Text(
-                                    "Confirm ",
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                  style: ElevatedButton.styleFrom(
-                                      primary: Theme.of(context).primaryColor,
-                                      shape: CircleBorder(
-                                          side:
-                                              BorderSide(color: Colors.black)),
-                                      padding: EdgeInsets.symmetric(
-                                          vertical: size.height * 0.07,
-                                          horizontal: size.width * 0.07)),
-                                  onPressed: () {}),
-                            )
+                          ? myOrder.status == "Wating Confrimation"
+                              ? Container(
+                                  margin: EdgeInsets.symmetric(
+                                      vertical: size.height * 0.03),
+                                  child: ElevatedButton(
+                                      child: Text(
+                                        "Confirm ",
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                      style: ElevatedButton.styleFrom(
+                                          primary:
+                                              Theme.of(context).primaryColor,
+                                          shape: CircleBorder(
+                                              side: BorderSide(
+                                                  color: Colors.black)),
+                                          padding: EdgeInsets.symmetric(
+                                              vertical: size.height * 0.07,
+                                              horizontal: size.width * 0.07)),
+                                      onPressed: () async {
+                                        await customersProvider
+                                            .confiremOrder(orderId.toString());
+                                      }),
+                                )
+                              : Container(color: Theme.of(context).primaryColor,)
                           : Container()
                       // Container(
                       //   width: double.infinity,

@@ -30,6 +30,8 @@ class Employees with ChangeNotifier {
     notifyListeners();
   }
 
+ 
+
   void setCurrentEmployeeData(Map<String, dynamic> userData) {
     _currentUserdata = Employee(
         empolyee_id: userData["id"].toString(),
@@ -42,6 +44,7 @@ class Employees with ChangeNotifier {
         phone: userData["phone"],
         imageUrl: userData["imageUrl"]);
   }
+  
 
   get getCurrentEmployeeData {
     return _currentUserdata;
@@ -53,7 +56,9 @@ class Employees with ChangeNotifier {
 
   Future<void> logout() async {
     await CallApi()
-        .postData(json.encode({"id": _currentUserdata.empolyee_id}), "logout");
+        .postData({"id": _currentUserdata.empolyee_id}, "logout").then((value){
+          print(value.body);
+        });
   }
 
   Employee findEmployeeByid(String id) {

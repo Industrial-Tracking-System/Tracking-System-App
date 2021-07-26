@@ -19,8 +19,8 @@ class _ProductionScreenState extends State<ProductionScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // final myProductsList = Provider.of<Products>(context, listen: false);
-    // final myProducts = myProductsList.myProducts as List<Product>;
+    Size size = MediaQuery.of(context).size;
+    
     return Scaffold(
       drawer: ManagerDrawer(),
       backgroundColor: Theme.of(context).primaryColor,
@@ -65,8 +65,8 @@ class _ProductionScreenState extends State<ProductionScreen> {
                   onRefresh: () => _refreshProducts(context),
                   child: Container(
                     padding: const EdgeInsets.only(top: 20, left: 20),
-                    width: MediaQuery.of(context).size.width,
-                    height: constraints.maxHeight * 0.776,
+                    width: double.infinity,
+                    height: size.height * 0.68,
                     child: ListView.builder(
                       itemCount: productProvider.myProducts.length,
                       itemBuilder: (context, index) {

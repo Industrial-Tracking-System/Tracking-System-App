@@ -29,7 +29,7 @@ class Inventories with ChangeNotifier {
   }
 
   Future<void> fetchInventory(String inventory_id) async {
-    final response = await CallApi().getData("inventories/${inventory_id}");
+    final response = await CallApi().getData("inventories/$inventory_id");
     final extractedData = json.decode(response.body) as Map<String, dynamic>;
     print("Inventory " + response.body);
     final Inventory loadedInventory = Inventory(

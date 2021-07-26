@@ -1,5 +1,3 @@
-import 'package:location/location.dart';
-
 class Customer {
   final String customer_id;
 
@@ -7,7 +5,8 @@ class Customer {
 
   final String company_name;
 
-  final Location location;
+  final double latitude;
+  final double longtude;
 
   final String phone;
 
@@ -20,7 +19,8 @@ class Customer {
       {this.customer_id,
       this.customer_name,
       this.email,
-      this.location,
+      this.latitude,
+      this.longtude,
       this.phone,
       this.company_name,
       this.apitoken,

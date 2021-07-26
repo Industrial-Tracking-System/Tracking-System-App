@@ -31,6 +31,8 @@ class _ClientsScreenState extends State<ClientsScreen> {
         child: Consumer<Customers>(
           builder: (ctx, customerProvider, _) => ListView.builder(
             itemBuilder: (context, index) => MyCard(
+              isClient: false,
+            
               imageLink:
                   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrxQ6QUCj7QIik6HZmgg9pAXNrLVv7Az3DfQ&usqp=CAU",
               id: customerProvider.myCustoemrs[index].customer_id,

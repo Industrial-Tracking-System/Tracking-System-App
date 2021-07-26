@@ -33,12 +33,12 @@ class ProductItem extends StatelessWidget {
               Text(
                 "Created At :",
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: 18,
                 ),
               ),
               Text(
                 "  ${DateFormat('hh:mm a').format(start)}",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
               )
             ],
           ),

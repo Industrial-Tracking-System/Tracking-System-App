@@ -1,3 +1,4 @@
+import 'package:backtracking/Modules/customer.dart';
 import 'package:backtracking/Modules/order.dart';
 import 'package:backtracking/Screens/Employee/driverOrderDetail.dart';
 import 'package:backtracking/providers/Orders.dart';
@@ -17,11 +18,12 @@ class EmployeeHomePage extends StatelessWidget {
     Order orderToDeliver =
         Provider.of<Orders>(context, listen: false).getcurrentOrderToDeliver;
     String customerName;
+    Customer customer;
     String inventoryName;
     if (orderToDeliver != null) {
-      customerName = Provider.of<Customers>(context, listen: false)
-          .getCurrentCustomer()
-          .company_name;
+      customer =
+          Provider.of<Customers>(context, listen: false).getCurrentCustomer();
+      customerName = customer.company_name;
       inventoryName = Provider.of<Inventories>(context, listen: false)
           .getCurrentInventory()
           .inventory_name;
@@ -132,7 +134,7 @@ class EmployeeHomePage extends StatelessWidget {
                             horizontal: size.width * 0.07)),
                     onPressed: () {
                       Navigator.of(context)
-                          .pushNamed(DriverOrderDetail.routeName);
+                          .pushNamed(DriverOrderDetail.routeName, arguments: [customer,orderToDeliver.id]);
                     },
                   ),
                 )
