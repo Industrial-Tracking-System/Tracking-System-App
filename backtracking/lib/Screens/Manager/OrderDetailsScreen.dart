@@ -116,7 +116,8 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                     ),
                     child: Column(children: [
                       Container(
-                        height: size.height * 0.35,
+                        height:
+                            isClient ? size.height * 0.35 : size.height * 0.573,
                         padding: EdgeInsets.only(
                             top: size.height * 0.04,
                             left: size.height * 0.02,
@@ -290,7 +291,9 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                             .confiremOrder(orderId.toString());
                                       }),
                                 )
-                              : Container(color: Theme.of(context).primaryColor,)
+                              : Container(
+                                  color: Theme.of(context).primaryColor,
+                                )
                           : Container()
                       // Container(
                       //   width: double.infinity,

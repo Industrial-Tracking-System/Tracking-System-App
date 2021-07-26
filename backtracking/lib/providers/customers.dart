@@ -59,12 +59,15 @@ class Customers with ChangeNotifier {
         apitoken: extractedData["api_token"],
         imageUrl: extractedData["imageUrl"]);
   }
-  Future<void> confiremOrder(String orderId ) async {
-     await CallApi().postData({"order_id":orderId},"order_arrived").then((value){
-       print(value.body);
-     });
+
+  Future<void> confiremOrder(String orderId) async {
+    await CallApi()
+        .postData({"order_id": orderId}, "order_arrived").then((value) {
+      print(value.body);
+    });
     // print(response.body);
-      }
+  }
+
   Customer getCurrentCustomer() {
     return _currentCustomer;
   }
@@ -78,7 +81,7 @@ class Customers with ChangeNotifier {
   }
 
   Order findOrderById(String id) {
-    return _myOrders.firstWhere((order) => order.id == id, orElse: ()=>null);
+    return _myOrders.firstWhere((order) => order.id == id, orElse: () => null);
   }
 
   List<Order> _myOrders = [];
@@ -102,7 +105,7 @@ class Customers with ChangeNotifier {
           inventory_id: extractedData[i]['inventory_id'].toString(),
           employee_id: extractedData[i]['employee_id'].toString(),
           car_id: extractedData[i]['car_id'].toString(),
-          quantity: 20,
+          quantity: extractedData[i]['quantity'],
         ),
       );
     }
@@ -113,9 +116,9 @@ class Customers with ChangeNotifier {
 
   Future<void> logout() async {
     await CallApi().postData(
-        {"id": _currentCustomer.customer_id}, "customer_logout").then((value){
-          print(value.body);
-        });
+        {"id": _currentCustomer.customer_id}, "customer_logout").then((value) {
+      print(value.body);
+    });
   }
 
   get myOrders {

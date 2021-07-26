@@ -29,7 +29,7 @@ class Orders with ChangeNotifier {
           inventory_id: extractedData[i]['inventory_id'].toString(),
           employee_id: extractedData[i]['employee_id'].toString(),
           car_id: extractedData[i]['car_id'].toString(),
-          quantity: 20,
+          quantity: extractedData[i]['quantity'],
         ),
       );
     }

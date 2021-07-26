@@ -26,6 +26,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _companyNameController = TextEditingController();
+  final _phone = TextEditingController();
+  final _name = TextEditingController();
 
   bool _isVerifying = false;
 
@@ -34,6 +36,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
       "email": _emailController.text,
       "password": _passwordController.text,
       "company_name": _companyNameController.text,
+      "phone": _phone.text,
+      "name": _name.text
     };
     setState(() {
       _isVerifying = true;
@@ -43,10 +47,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
         _isVerifying = false;
       });
       Map<String, dynamic> userData = json.decode(respValue.body);
-      print(userData["id"]);
-      print(userData["email"]);
       Navigator.of(context).pushReplacementNamed(
-        CustomerHomePage.routeName,
+        LoginOptions.routeName,
       );
     });
   }
@@ -82,8 +84,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 controller: _companyNameController,
               ),
               RoundedInputField(
+                hintText: "Name ",
+                controller: _name,
+              ),
+              RoundedInputField(
                 hintText: "Your Email",
                 controller: _emailController,
+              ),
+              RoundedInputField(
+                hintText: "Phone",
+                controller: _phone,
               ),
               RoundedPasswordField(
                 controller: _passwordController,
