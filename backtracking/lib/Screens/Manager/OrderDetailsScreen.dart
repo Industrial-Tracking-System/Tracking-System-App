@@ -31,7 +31,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
     final isClient = arguments[1];
 
     if (!isClient) {
-      if (isLoading) { 
+      if (isLoading) {
         Employees employeesProvider = Provider.of(context, listen: false);
         // load data for Manager
         if (employeesProvider.getCurrentEmployeeData.isManger == 1) {
@@ -42,12 +42,13 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
               .findCustomerById(myOrder.customer_id);
           inventory = Provider.of<Inventories>(context, listen: false)
               .findInventoryByid(myOrder.inventory_id);
-        }
-        else{ // load data for Driver
+        } else {
+          // load data for Driver
 
         }
       }
-    } else { // load data for customer
+    } else {
+      // load data for customer
       if (isLoading) {
         Customers customersProvider =
             Provider.of<Customers>(context, listen: false);
@@ -95,10 +96,11 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                       top: (size.height -
                               AppBar().preferredSize.height -
                               MediaQuery.of(context).padding.top) *
-                          0.25,
+                          0.35,
                     ),
                     child: Column(children: [
                       Container(
+                        height: size.height * 0.35,
                         padding: EdgeInsets.only(
                             top: size.height * 0.04,
                             left: size.height * 0.02,
@@ -229,7 +231,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                   ),
                                   Text(
                                       myOrder.orderDate
-                                          .difference(DateTime.now())
+                                          .add(Duration(days: 2))
                                           .toString(),
                                       style: TextStyle(
                                           color: Colors.white,
@@ -248,14 +250,34 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                           ),
                         ),
                       ),
-                      Container(
-                        width: double.infinity,
-                        height: size.height * 0.39,
-                        child: Image.network(
-                          "https://media.wired.com/photos/59269cd37034dc5f91bec0f1/master/pass/GoogleMapTA.jpg",
-                          fit: BoxFit.cover,
-                        ),
-                      )
+                      isClient
+                          ? Container(
+                              margin: EdgeInsets.symmetric(
+                                  vertical: size.height * 0.03),
+                              child: ElevatedButton(
+                                  child: Text(
+                                    "Confirm ",
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                  style: ElevatedButton.styleFrom(
+                                      primary: Theme.of(context).primaryColor,
+                                      shape: CircleBorder(
+                                          side:
+                                              BorderSide(color: Colors.black)),
+                                      padding: EdgeInsets.symmetric(
+                                          vertical: size.height * 0.07,
+                                          horizontal: size.width * 0.07)),
+                                  onPressed: () {}),
+                            )
+                          : Container()
+                      // Container(
+                      //   width: double.infinity,
+                      //   height: size.height * 0.39,
+                      //   child: Image.network(
+                      //     "https://media.wired.com/photos/59269cd37034dc5f91bec0f1/master/pass/GoogleMapTA.jpg",
+                      //     fit: BoxFit.cover,
+                      //   ),
+                      // )
                     ]),
                   )
                 ],
