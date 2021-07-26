@@ -33,7 +33,9 @@ class _LogInScreenState extends State<LogInScreen> {
   final _passwordController = TextEditingController();
 
   bool _isVerifying = false;
-  void directCustomer(Map<String, dynamic> userData) async {
+  bool _isLoading = false;
+
+  Future<void> directCustomer(Map<String, dynamic> userData) async {
     if (userData["message"] != null) {
       showDialog(
         context: context,
@@ -58,7 +60,7 @@ class _LogInScreenState extends State<LogInScreen> {
     }
   }
 
-  void directEmployee(Map<String, dynamic> userData) async {
+  Future<void> directEmployee(Map<String, dynamic> userData) async {
     if (userData["message"] != null) {
       showDialog(
         context: context,
@@ -75,7 +77,8 @@ class _LogInScreenState extends State<LogInScreen> {
           ],
         ),
       );
-    } else if (userData["is_manager"] == 1) { // fetching for manager
+    } else if (userData["is_manager"] == 1) {
+      // fetching for manager
       Provider.of<Employees>(context, listen: false).fetchandSetData();
       Provider.of<Employees>(context, listen: false)
           .setCurrentEmployeeData(userData);
@@ -86,7 +89,8 @@ class _LogInScreenState extends State<LogInScreen> {
       Navigator.of(context).pushReplacementNamed(
         ProductionScreen.routeName,
       );
-    } else { // fetching for Driver
+    } else {
+      // fetching for Driver
       Provider.of<Employees>(context, listen: false)
           .setCurrentEmployeeData(userData);
       await Provider.of<Orders>(context, listen: false)
@@ -121,9 +125,21 @@ class _LogInScreenState extends State<LogInScreen> {
       });
       Map<String, dynamic> userData = json.decode(respValue.body);
 
+      setState(() {
+        _isLoading = true;
+      });
+
       userType == "customer"
-          ? directCustomer(userData)
-          : directEmployee(userData);
+          ? directCustomer(userData).then((value) {
+              setState(() {
+                _isLoading = false;
+              });
+            })
+          : directEmployee(userData).then((value) {
+              setState(() {
+                _isLoading = false;
+              });
+            });
     });
   }
 
@@ -134,58 +150,62 @@ class _LogInScreenState extends State<LogInScreen> {
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
-      body: LoginBackground(
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                "LOGIN",
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15,
-                    color: Colors.purple[400]),
-              ),
-              SizedBox(
-                height: size.height * 0.02,
-              ),
-              SvgPicture.asset(
-                "assets/icons/login.svg",
-                height: size.height * 0.4,
-              ),
-              SizedBox(
-                height: size.height * 0.02,
-              ),
-              RoundedInputField(
-                hintText: "Your Email",
-                onChanged: (value) {},
-                controller: _emailController,
-              ),
-              RoundedPasswordField(
-                onChanged: (value) {},
-                controller: _passwordController,
-              ),
-              Button(
-                text: _isVerifying ? "Loading..." : "LOGIN",
-                press: _isVerifying
-                    ? null
-                    : () {
-                        _handleLogin(_userType);
-                      },
-                color: Color(0xFF6F35A5),
-                textColor: Colors.white,
-                width: size.width * 0.8,
-              ),
-              AlreadyHaveAnAccountCheck(
-                login: true,
-                press: () => Navigator.of(context).pushReplacementNamed(
-                  SignUpScreen.routeName,
+      body: _isLoading
+          ? Center(
+              child: CircularProgressIndicator(),
+            )
+          : LoginBackground(
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "LOGIN",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15,
+                          color: Colors.purple[400]),
+                    ),
+                    SizedBox(
+                      height: size.height * 0.02,
+                    ),
+                    SvgPicture.asset(
+                      "assets/icons/login.svg",
+                      height: size.height * 0.4,
+                    ),
+                    SizedBox(
+                      height: size.height * 0.02,
+                    ),
+                    RoundedInputField(
+                      hintText: "Your Email",
+                      onChanged: (value) {},
+                      controller: _emailController,
+                    ),
+                    RoundedPasswordField(
+                      onChanged: (value) {},
+                      controller: _passwordController,
+                    ),
+                    Button(
+                      text: _isVerifying ? "Loading..." : "LOGIN",
+                      press: _isVerifying
+                          ? null
+                          : () {
+                              _handleLogin(_userType);
+                            },
+                      color: Color(0xFF6F35A5),
+                      textColor: Colors.white,
+                      width: size.width * 0.8,
+                    ),
+                    AlreadyHaveAnAccountCheck(
+                      login: true,
+                      press: () => Navigator.of(context).pushReplacementNamed(
+                        SignUpScreen.routeName,
+                      ),
+                    ),
+                  ],
                 ),
               ),
-            ],
-          ),
-        ),
-      ),
+            ),
     );
   }
 }
