@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:backtracking/Screens/Login/login_options.dart';
+import 'package:backtracking/Screens/SignUp/map_screen.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -32,25 +33,20 @@ class _SignUpScreenState extends State<SignUpScreen> {
   bool _isVerifying = false;
 
   void _handleSignUp() async {
-    var data = {
-      "email": _emailController.text,
-      "password": _passwordController.text,
-      "company_name": _companyNameController.text,
-      "phone": _phone.text,
-      "name": _name.text
-    };
     setState(() {
       _isVerifying = true;
     });
-    await CallApi().postData(data, "register").then((respValue) {
-      setState(() {
-        _isVerifying = false;
-      });
-      Map<String, dynamic> userData = json.decode(respValue.body);
-      Navigator.of(context).pushReplacementNamed(
-        LoginOptions.routeName,
+     // [email, password, company_name, phone, name]
+    Navigator.of(context).pushNamed(
+        MapScreen.routeName,
+        arguments: [
+          _emailController.text,
+          _passwordController.text,
+          _companyNameController.text,
+          _phone.text,
+          _name.text,
+        ],
       );
-    });
   }
 
   @override
@@ -80,6 +76,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 height: size.height * 0.02,
               ),
               RoundedInputField(
+                icon: Icons.business,
                 hintText: "Your Company Name",
                 controller: _companyNameController,
               ),
@@ -88,10 +85,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 controller: _name,
               ),
               RoundedInputField(
+                icon: Icons.email,
                 hintText: "Your Email",
                 controller: _emailController,
               ),
               RoundedInputField(
+                icon: Icons.phone,
                 hintText: "Phone",
                 controller: _phone,
               ),

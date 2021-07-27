@@ -7,6 +7,7 @@ import 'package:backtracking/Screens/Manager/clientsScreen.dart';
 import 'package:backtracking/Screens/Customer/customer_home.dart';
 import 'package:backtracking/Screens/Manager/storeScreen.dart';
 import 'package:backtracking/Screens/Manager/viewOrders.dart';
+import 'package:backtracking/Screens/SignUp/map_screen.dart';
 import 'package:backtracking/providers/Employees.dart';
 import 'package:backtracking/providers/Orders.dart';
 import 'package:backtracking/providers/cart.dart';
@@ -93,6 +94,7 @@ class MyApp extends StatelessWidget {
           ViewOrdersScreen.routeName: (context) => ViewOrdersScreen(),
           CartScreen.routeName: (context) => CartScreen(),
           DriverOrderDetail.routeName: (context) => DriverOrderDetail(),
+          MapScreen.routeName: (context) => MapScreen(),
         },
       ),
     );
