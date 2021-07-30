@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:backtracking/Screens/Login/login_options.dart';
 import 'package:backtracking/Screens/SignUp/map_screen.dart';
 
@@ -11,10 +9,8 @@ import '../../components/already_have_an_account_acheck.dart';
 import '../../components/rounded_input_field.dart';
 import '../../components/rounded_password_field.dart';
 
-import '../Customer/customer_home.dart';
 import 'components/Sign_Up_background.dart';
 
-import '../../api/api.dart';
 
 class SignUpScreen extends StatefulWidget {
   static const routeName = "/SignUp-Screen";
