@@ -82,7 +82,7 @@ This is a demo for how the project should work and its functionalities.
 ## Contact
 
 * Mohamed Ashraf Mohamed - [LinkedIn](https://www.linkedin.com/in/mohamed-el-esaily/) - mohamedelesaily0@gmail.com
-* Mohamed Ashraf Moussa - [LinkedIn](https://www.linkedin.com/in/ahmed-mostafa-0142001b2/) - kudo7474@gmail.com
+* Mohamed Ashraf Moussa - [LinkedIn](https://www.linkedin.com/in/mohamed-moussa-baab731a5/) - Mohamedmoussa4@yahoo.com
 * Mohamed Abd el-fattah - [LinkedIn](https://www.linkedin.com/in/mohamed-abdelfattah-28a283189/) - abdelfattahmohamed968@gmail.com
 * Mahmoud Ashraf - [LinkedIn](https://www.linkedin.com/in/mahmoud-ashraf-51b3321a2/) - mahmoudashraf043@gmail.com
 
