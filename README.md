@@ -36,7 +36,7 @@ Our project solve these problems as below:
 * Making an e-commerce app for customers to purchase what they want if it's available 
 with some functionalities as cart (to undo what they added and know the price),
 view previous orders and current order if there is, keep track of the current order status (on way, waiting confirmation, etc.)
-* Making an app the manager to view everything such as all orders with their current status, all customers with a possability to contact them and view all their, and all inventories with their assigned orders
+* Making an app to the manager to view everything such as all orders with their current status, all customers with a possibility to contact them and view all their, and all inventories with their assigned orders
 * Making an app to the drivers so they can know their assigned orders and also how to deliver them to the customer using google maps
 * Develop some features to make the application better and more usable. Our Mobile Application is implemented by Flutter framework to be accessible to every smartphone which supports either Android, IOS, web application and Desktop application.
 
