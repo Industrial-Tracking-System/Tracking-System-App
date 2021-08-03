@@ -72,10 +72,11 @@ This is a list of things you need to use the software and how to install them.
 
 <!-- USAGE EXAMPLES -->
 ## Usage
-This is a demo for how the project should work and its functionalities.
+This is a demo for the customer-side and driver-side of the application
 
+https://user-images.githubusercontent.com/36118944/128044263-df74a2ee-9ff6-4eb5-a061-85933887942e.mp4
 
-
+https://user-images.githubusercontent.com/36118944/128044394-e0122cbb-ffe0-4597-ac48-83f5bbecc2c8.mp4
 
 
 <!-- CONTACT -->
